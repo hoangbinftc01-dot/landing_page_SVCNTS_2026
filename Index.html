@@ -99,10 +99,10 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.32);
         }
 
         .orange-glow:hover {
@@ -127,7 +127,7 @@
         }
 
         section[id] {
-            scroll-margin-top: 90px;
+            scroll-margin-top: 88px;
         }
 
         .img-frame {
@@ -245,15 +245,6 @@
             color: #0F172A !important;
         }
 
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
         .expert-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -348,52 +339,198 @@
             transform: translateY(0);
         }
 
-        .hero-cover-group .hero-hover-panel {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px) scale(0.98);
-    pointer-events: none;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.96);
-    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.20);
-    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
-}
+        .hero-cover-group {
+            position: relative;
+        }
 
-.hero-cover-group:hover .hero-hover-panel,
-.hero-cover-group:focus-within .hero-hover-panel {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-}
+        .hero-bg-media {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
 
-.hero-hover-content {
-    opacity: 1;
-    transform: translateY(0);
-    transition: none;
-}
-
-.hero-hover-hint {
-    display: none;
-}
-        .requirements-compact-card {
+        .hero-bg-desktop,
+        .hero-bg-tablet,
+        .hero-bg-mobile {
+            width: 100%;
             height: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            object-fit: cover;
+            display: none;
         }
 
-        .requirements-compact-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(148, 163, 184, 0.14);
+        .hero-bg-desktop {
+            display: block;
+            object-position: center center;
+            transform: scale(1.02);
         }
 
-        .requirements-cert-card {
-            height: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .hero-bg-tablet {
+            object-position: center center;
         }
 
-        .requirements-cert-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(148, 163, 184, 0.14);
+        .hero-bg-mobile {
+            object-position: center top;
+        }
+
+        .hero-hover-panel {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.98);
+            pointer-events: none;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.96);
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.20);
+            transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+        }
+
+        .hero-cover-group:hover .hero-hover-panel,
+        .hero-cover-group:focus-within .hero-hover-panel,
+        .hero-cover-group.show-panel .hero-hover-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .hero-hover-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition: none;
+        }
+
+        .hero-tap-hint {
+            position: absolute;
+            left: 50%;
+            bottom: 22px;
+            transform: translateX(-50%);
+            z-index: 12;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.62);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .hero-cover-group:not(.show-panel) .hero-tap-hint {
+            display: inline-flex;
+        }
+
+        .hero-close-btn {
+            display: none;
+        }
+
+        .mobile-menu-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .mobile-menu-panel.open {
+            max-height: 320px;
+        }
+
+        /* Tablet / iPad */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .hero-bg-desktop {
+                display: none;
+            }
+
+            .hero-bg-tablet {
+                display: block;
+            }
+
+            .hero-bg-mobile {
+                display: none;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+            section[id] {
+                scroll-margin-top: 76px;
+            }
+
+            .hero-cover-group {
+                min-height: 760px !important;
+            }
+
+            .hero-bg-desktop,
+            .hero-bg-tablet {
+                display: none;
+            }
+
+            .hero-bg-mobile {
+                display: block;
+            }
+
+            .hero-hover-panel {
+                width: 100%;
+                max-width: none;
+                min-height: auto;
+                border-radius: 28px;
+            }
+
+            .hero-close-btn {
+                position: absolute;
+                top: 14px;
+                right: 14px;
+                z-index: 20;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 999px;
+                border: 1px solid #E2E8F0;
+                background: rgba(255, 255, 255, 0.92);
+                color: #334155;
+            }
+
+            .hero-cover-group .hero-hover-panel {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(18px) scale(0.98);
+                pointer-events: none;
+            }
+
+            .hero-cover-group.show-panel .hero-hover-panel {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0) scale(1);
+                pointer-events: auto;
+            }
+
+            .hero-cover-group:hover .hero-hover-panel,
+            .hero-cover-group:focus-within .hero-hover-panel {
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(18px) scale(0.98);
+                pointer-events: none;
+            }
+
+            .hero-cover-group.show-panel:hover .hero-hover-panel,
+            .hero-cover-group.show-panel:focus-within .hero-hover-panel {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0) scale(1);
+                pointer-events: auto;
+            }
+
+            .benefits-parallax-media {
+                transform: none !important;
+            }
+
+            .process-item .process-content {
+                padding-left: 0 !important;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -412,10 +549,10 @@
             .alumni-overlay,
             .alumni-overlay-content,
             .hero-hover-panel,
-            .hero-hover-content,
-            .hero-hover-hint,
-            .requirements-compact-card,
-            .requirements-cert-card {
+            .hero-bg-desktop,
+            .hero-bg-tablet,
+            .hero-bg-mobile,
+            .mobile-menu-panel {
                 transition: none;
             }
         }
@@ -423,10 +560,10 @@
 </head>
 
 <body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary">
-    <nav
-        class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.05)] border-b border-slate-100">
-        <div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
-            <img src="logo.png" alt="logoFPT" class="w-auto h-10">
+    <nav id="siteNav"
+        class="fixed top-0 w-full z-50 bg-white/85 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.05)] border-b border-slate-100">
+        <div class="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 max-w-screen-2xl mx-auto">
+            <img src="logo.png" alt="logoFPT" class="w-auto h-8 sm:h-10">
 
             <div class="hidden md:flex gap-8 font-['Space_Grotesk'] tracking-tight text-sm uppercase">
                 <a class="top-nav-link text-slate-600 hover:text-[#EB6A1B] font-medium transition-colors duration-300"
@@ -439,88 +576,130 @@
                     href="#process">Quy trình</a>
             </div>
 
-            <a class="bg-secondary-container text-white px-6 py-2 font-headline font-bold text-sm tracking-widest hover:scale-105 active:scale-95 transition-all orange-glow"
-                href="#register">
-                ỨNG TUYỂN NGAY!
-            </a>
+            <div class="hidden sm:block">
+                <a class="bg-secondary-container text-white px-4 lg:px-6 py-2 font-headline font-bold text-xs sm:text-sm tracking-widest hover:scale-105 active:scale-95 transition-all orange-glow"
+                    href="#register">
+                    ỨNG TUYỂN NGAY!
+                </a>
+            </div>
+
+            <button id="mobileMenuBtn"
+                class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl border border-slate-200 bg-white text-slate-700">
+                <span id="mobileMenuIcon" class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+
+        <div id="mobileMenuPanel" class="mobile-menu-panel md:hidden border-t border-slate-100 bg-white">
+            <div class="px-4 py-4 flex flex-col gap-3">
+                <a class="mobile-nav-link text-slate-700 font-semibold py-2" href="#tracks">Nhóm ngành</a>
+                <a class="mobile-nav-link text-slate-700 font-semibold py-2" href="#benefits-page">Quyền lợi</a>
+                <a class="mobile-nav-link text-slate-700 font-semibold py-2" href="#requirements-page">Đối tượng</a>
+                <a class="mobile-nav-link text-slate-700 font-semibold py-2" href="#process">Quy trình</a>
+                <a class="mt-2 bg-secondary-container text-white px-4 py-3 text-center font-headline font-bold text-sm tracking-widest"
+                    href="#register">
+                    ỨNG TUYỂN NGAY!
+                </a>
+            </div>
         </div>
     </nav>
 
-    <main class="pt-20">
-        <section class="hero-cover-group relative min-h-[921px] w-full overflow-hidden">
-    <div class="absolute inset-0 bg-center bg-cover bg-no-repeat" style="background-image: url('visual2.png');">
-    </div>
-    <div class="absolute inset-0 bg-gradient-to-r from-white/12 via-transparent to-slate-950/10"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-white/8 via-transparent to-white/12"></div>
+    <main class="pt-[72px] sm:pt-20">
+        <section id="heroBanner"
+            class="hero-cover-group relative min-h-[560px] sm:min-h-[760px] lg:min-h-[921px] w-full overflow-hidden">
+            <div class="hero-bg-media">
+                <img src="visual2.png" alt="Hero visual desktop" class="hero-bg-desktop" />
+                <img src="visual1.png" alt="Hero visual tablet" class="hero-bg-tablet" />
+                <img src="visual3.png" alt="Hero visual mobile" class="hero-bg-mobile" />
+            </div>
 
-    <div class="relative z-10 max-w-screen-2xl mx-auto min-h-[921px] px-6 md:px-8 lg:px-10 flex items-center justify-end">
-        <div class="w-full max-w-xl">
-            <div class="hero-hover-panel relative rounded-3xl p-6 md:p-8 lg:p-10 overflow-hidden flex flex-col justify-center min-h-[420px]">
-                <div class="hero-hover-content relative z-10">
-                    <h1 class="text-slate-900 font-headline font-bold text-3xl md:text-5xl tracking-tight leading-tight">
-                        SINH VIÊN CÔNG NGHỆ TẬP SỰ 2026
-                    </h1>
+            <div class="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-slate-950/10"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-white/10"></div>
 
-                    <p class="mt-3 text-[#006970] font-headline font-semibold text-lg md:text-2xl tracking-tight">
-                        Master Deep Tech, Lead the Next
-                    </p>
+            <button type="button" id="heroTapHint" class="hero-tap-hint md:hidden">
+                <span class="material-symbols-outlined text-[18px]">touch_app</span>
+                Chạm để xem nội dung
+            </button>
 
-                    <div class="mt-5 w-24 h-1 bg-secondary-container rounded-full"></div>
+            <div
+                class="relative z-10 max-w-screen-2xl mx-auto min-h-[560px] sm:min-h-[760px] lg:min-h-[921px] px-4 sm:px-6 md:px-8 lg:px-10 flex items-end sm:items-center justify-center lg:justify-end pb-24 sm:pb-0">
+                <div class="w-full max-w-xl md:max-w-xl max-w-none">
+                    <div id="heroPanel"
+                        class="hero-hover-panel relative rounded-[24px] sm:rounded-3xl p-5 sm:p-7 lg:p-10 overflow-hidden flex flex-col justify-center min-h-[320px] sm:min-h-[380px] lg:min-h-[420px]">
 
-                    <p class="mt-5 text-slate-700 text-sm md:text-base leading-7">
-                        Chương trình tìm kiếm &amp; đào tạo tài năng trẻ lớn nhất dành cho Sinh viên khối ngành
-                        Công nghệ - Kỹ thuật.
-                    </p>
+                        <button type="button" id="heroCloseBtn" class="hero-close-btn md:hidden"
+                            aria-label="Đóng nội dung">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
 
-                    <p class="mt-4 text-slate-600 text-sm md:text-base leading-7">
-                        Nơi bạn được trải nghiệm môi trường làm việc thực tế, tham gia dự án thật và học hỏi từ
-                        các chuyên gia trong hệ sinh thái số hiện đại để tăng tốc kỹ năng, mở rộng tư duy và sẵn
-                        sàng trở thành thế hệ kỹ sư tương lai của FPT Telecom.
-                    </p>
+                        <div class="hero-hover-content relative z-10">
+                            <h1
+                                class="text-slate-900 font-headline font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-tight">
+                                SINH VIÊN CÔNG NGHỆ TẬP SỰ 2026
+                            </h1>
 
-                    <div class="mt-8 flex flex-wrap gap-4">
-                        <a href="#register"
-                            class="inline-flex items-center gap-3 bg-secondary-container text-white px-6 py-3 font-headline font-bold text-sm md:text-base tracking-[0.15em] uppercase hover:scale-105 active:scale-95 transition-all orange-glow">
-                            ỨNG TUYỂN NGAY!
-                            <span class="material-symbols-outlined text-base">arrow_forward</span>
-                        </a>
+                            <p
+                                class="mt-3 text-[#006970] font-headline font-semibold text-lg sm:text-xl lg:text-2xl tracking-tight">
+                                Master Deep Tech, Lead the Next
+                            </p>
 
-                        <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700 text-sm">
-                            <span class="material-symbols-outlined text-[#00D1E0]">school</span>
-                            Dành cho sinh viên công nghệ - kỹ thuật
+                            <div class="mt-5 w-24 h-1 bg-secondary-container rounded-full"></div>
+
+                            <p class="mt-5 text-slate-700 text-sm sm:text-base leading-7">
+                                Chương trình tìm kiếm &amp; đào tạo tài năng trẻ lớn nhất dành cho Sinh viên khối ngành
+                                Công nghệ - Kỹ thuật.
+                            </p>
+
+                            <p class="mt-4 text-slate-600 text-sm sm:text-base leading-7">
+                                Nơi bạn được trải nghiệm môi trường làm việc thực tế, tham gia dự án thật và học hỏi từ
+                                các chuyên gia trong hệ sinh thái số hiện đại để tăng tốc kỹ năng, mở rộng tư duy và
+                                sẵn sàng trở thành thế hệ kỹ sư tương lai của FPT Telecom.
+                            </p>
+
+                            <div class="mt-7 sm:mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
+                                <a href="#register"
+                                    class="inline-flex items-center justify-center gap-3 bg-secondary-container text-white px-5 sm:px-6 py-3 font-headline font-bold text-sm sm:text-base tracking-[0.12em] uppercase hover:scale-105 active:scale-95 transition-all orange-glow">
+                                    ỨNG TUYỂN NGAY!
+                                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+                                </a>
+
+                                <div
+                                    class="inline-flex items-center justify-center sm:justify-start gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700 text-sm text-center sm:text-left">
+                                    <span class="material-symbols-outlined text-[#00D1E0]">school</span>
+                                    Dành cho sinh viên công nghệ - kỹ thuật
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-        <section class="py-24 px-8 bg-surface-container-low" id="tracks">
+        <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-surface-container-low" id="tracks">
             <div class="max-w-screen-2xl mx-auto">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 lg:mb-16 gap-4">
                     <div class="space-y-4">
-                        <h2 class="text-[#00D1E0] font-headline font-bold text-4xl tracking-tighter">NHÓM NGÀNH</h2>
+                        <h2 class="text-[#00D1E0] font-headline font-bold text-3xl sm:text-4xl tracking-tighter">NHÓM
+                            NGÀNH</h2>
                         <div class="h-1 w-24 bg-secondary-container"></div>
                     </div>
-                    <p class="text-slate-500 text-lg max-w-md font-body">
+                    <p class="text-slate-500 text-base sm:text-lg max-w-md font-body">
                         Hệ sinh thái công nghệ đa dạng với những thử thách thực tế từ quy mô hàng triệu người dùng.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                     <div
-                        class="glass-card p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100">
+                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
                         <div class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
                             <span
                                 class="material-symbols-outlined text-6xl text-slate-900">settings_input_antenna</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-6 group-hover:scale-110 transition-transform">
+                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
                                 <span class="material-symbols-outlined">settings_input_antenna</span>
                             </div>
-                            <h3 class="text-2xl font-headline font-bold text-slate-900">Viễn thông</h3>
+                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">Viễn thông</h3>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Vận hành hạ tầng viễn thông toàn quốc, nghiên cứu các chuẩn truyền dẫn mới nhất.
                             </p>
@@ -528,16 +707,17 @@
                     </div>
 
                     <div
-                        class="glass-card p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100">
+                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
                         <div class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
                             <span class="material-symbols-outlined text-6xl text-slate-900">terminal</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-6 group-hover:scale-110 transition-transform">
+                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
                                 <span class="material-symbols-outlined">terminal</span>
                             </div>
-                            <h3 class="text-2xl font-headline font-bold text-slate-900">Công nghệ thông tin</h3>
+                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">Công nghệ thông
+                                tin</h3>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Phát triển nền tảng ứng dụng, hệ thống billing, CRM và các giải pháp chuyển đổi số.
                             </p>
@@ -545,16 +725,17 @@
                     </div>
 
                     <div
-                        class="glass-card p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100">
+                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
                         <div class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
                             <span class="material-symbols-outlined text-6xl text-slate-900">neurology</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-6 group-hover:scale-110 transition-transform">
+                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
                                 <span class="material-symbols-outlined">neurology</span>
                             </div>
-                            <h3 class="text-2xl font-headline font-bold text-slate-900">Dữ liệu &amp; Trí tuệ nhân tạo</h3>
+                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">Dữ liệu &amp; Trí
+                                tuệ nhân tạo</h3>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Xây dựng Data Warehouse, phát triển mô hình AI và các hệ thống phân tích dữ liệu lớn.
                             </p>
@@ -562,17 +743,18 @@
                     </div>
 
                     <div
-                        class="glass-card p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100">
+                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
                         <div class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
                             <span
                                 class="material-symbols-outlined text-6xl text-slate-900">precision_manufacturing</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-6 group-hover:scale-110 transition-transform">
+                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
                                 <span class="material-symbols-outlined">precision_manufacturing</span>
                             </div>
-                            <h3 class="text-2xl font-headline font-bold text-slate-900">Điện - Cơ điện tự động hóa</h3>
+                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">Điện - Cơ điện tự
+                                động hóa</h3>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Vận hành hạ tầng Data Center, điện thông minh và hệ thống giám sát tự động.
                             </p>
@@ -580,16 +762,17 @@
                     </div>
 
                     <div
-                        class="glass-card p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100">
+                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
                         <div class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
                             <span class="material-symbols-outlined text-6xl text-slate-900">security</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-6 group-hover:scale-110 transition-transform">
+                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
                                 <span class="material-symbols-outlined">security</span>
                             </div>
-                            <h3 class="text-2xl font-headline font-bold text-slate-900">An toàn thông tin</h3>
+                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">An toàn thông tin
+                            </h3>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Phòng thủ, phản ứng sự cố, pentest và bảo mật cloud toàn diện.
                             </p>
@@ -597,16 +780,17 @@
                     </div>
 
                     <div
-                        class="glass-card p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100">
+                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
                         <div class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
                             <span class="material-symbols-outlined text-6xl text-slate-900">memory</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-6 group-hover:scale-110 transition-transform">
+                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
                                 <span class="material-symbols-outlined">memory</span>
                             </div>
-                            <h3 class="text-2xl font-headline font-bold text-slate-900">Thiết kế vi mạch (IC) &amp; Phần cứng</h3>
+                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">Thiết kế vi mạch
+                                (IC) &amp; Phần cứng</h3>
                             <p class="text-slate-600 text-sm leading-relaxed">
                                 Thiết kế vi mạch, tối ưu phần cứng cho các hệ thống thiết bị và IoT.
                             </p>
@@ -616,7 +800,8 @@
             </div>
         </section>
 
-        <section class="page-section py-24 px-8 bg-white relative overflow-hidden" id="benefits-page">
+        <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden"
+            id="benefits-page">
             <div class="absolute inset-0 z-0 pointer-events-none">
                 <div class="benefits-parallax-media" data-parallax>
                     <img src="visual2.png" alt="Background visual" class="w-full h-full opacity-[0.08]" />
@@ -627,25 +812,28 @@
             </div>
 
             <div class="max-w-screen-2xl mx-auto w-full relative z-10">
-                <div class="max-w-3xl mb-16">
-                    <h2 class="text-[#00D1E0] font-headline font-bold text-5xl tracking-tighter mb-4">QUYỀN LỢI</h2>
+                <div class="max-w-3xl mb-10 sm:mb-12 lg:mb-16">
+                    <h2
+                        class="text-[#00D1E0] font-headline font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tighter mb-4">
+                        QUYỀN LỢI</h2>
                     <div class="h-1 w-28 bg-secondary-container mb-6"></div>
-                    <p class="text-slate-500 text-lg leading-relaxed">
+                    <p class="text-slate-500 text-base sm:text-lg leading-relaxed">
                         Những giá trị bạn nhận được không chỉ là một kỳ thực tập, mà là một hành trình tăng tốc sự
-                        nghiệp
-                        trong môi trường công nghệ thực chiến.
+                        nghiệp trong môi trường công nghệ thực chiến.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="benefit-card bg-white/75 backdrop-blur-sm border border-slate-100 p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+                    <div
+                        class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
                             <div class="text-secondary-container shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">payments</span>
                             </div>
                             <div>
-                                <h4 class="text-2xl font-headline font-bold text-slate-900 mb-3">Thu nhập đột phá</h4>
-                                <p class="text-slate-600 leading-relaxed">
+                                <h4 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">Thu nhập
+                                    đột phá</h4>
+                                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
                                     Bỏ túi lên đến <span class="font-bold text-slate-900">150 triệu VNĐ</span> khi vẫn
                                     là sinh viên.
                                 </p>
@@ -653,15 +841,16 @@
                         </div>
                     </div>
 
-                    <div class="benefit-card bg-white/75 backdrop-blur-sm border border-slate-100 p-8">
+                    <div
+                        class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
                             <div class="text-secondary-container shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">science</span>
                             </div>
                             <div>
-                                <h4 class="text-2xl font-headline font-bold text-slate-900 mb-3">Thực chiến R&amp;D
-                                </h4>
-                                <p class="text-slate-600 leading-relaxed">
+                                <h4 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">Thực chiến
+                                    R&amp;D</h4>
+                                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
                                     Được phát triển trong môi trường R&amp;D thực tế, tool bản quyền, hạ tầng tiên tiến
                                     và nền tảng AI hiện đại.
                                 </p>
@@ -669,30 +858,33 @@
                         </div>
                     </div>
 
-                    <div class="benefit-card bg-white/75 backdrop-blur-sm border border-slate-100 p-8">
+                    <div
+                        class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
                             <div class="text-secondary-container shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">psychology</span>
                             </div>
                             <div>
-                                <h4 class="text-2xl font-headline font-bold text-slate-900 mb-3">Đặc quyền Mentorship
-                                    1:1</h4>
-                                <p class="text-slate-600 leading-relaxed">
-                                    Được bảo trợ chuyên môn, đối thoại trực tiếp và kèm cặp 1:1 bởi các Chuyên gia Công
-                                    nghệ hàng đầu.
+                                <h4 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">Đặc quyền
+                                    Mentorship 1:1</h4>
+                                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                                    Được bảo trợ chuyên môn, đối thoại trực tiếp và kèm cặp 1:1 bởi các Chuyên gia
+                                    Công nghệ hàng đầu.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="benefit-card bg-white/75 backdrop-blur-sm border border-slate-100 p-8">
+                    <div
+                        class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
                             <div class="text-secondary-container shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">workspace_premium</span>
                             </div>
                             <div>
-                                <h4 class="text-2xl font-headline font-bold text-slate-900 mb-3">Bứt tốc sự nghiệp</h4>
-                                <p class="text-slate-600 leading-relaxed">
+                                <h4 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">Bứt tốc
+                                    sự nghiệp</h4>
+                                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
                                     Nhận ngay khóa đào tạo công nghệ chuyên sâu. Được tài trợ <span
                                         class="font-bold text-slate-900">100% chi phí học &amp; thi</span>
                                     các chứng chỉ quốc tế như CCIE, CISSP,...
@@ -701,15 +893,16 @@
                         </div>
                     </div>
 
-                    <div class="benefit-card bg-white/75 backdrop-blur-sm border border-slate-100 p-8 md:col-span-2">
+                    <div
+                        class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl lg:col-span-2">
                         <div class="flex items-start gap-4">
                             <div class="text-secondary-container shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">rocket_launch</span>
                             </div>
                             <div>
-                                <h4 class="text-2xl font-headline font-bold text-slate-900 mb-3">Lộ trình Fast-track
-                                </h4>
-                                <p class="text-slate-600 leading-relaxed">
+                                <h4 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">Lộ trình
+                                    Fast-track</h4>
+                                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
                                     Trở thành nhân viên chính thức và phát triển thành đội ngũ cán bộ công nghệ nòng
                                     cốt.
                                 </p>
@@ -720,169 +913,155 @@
             </div>
         </section>
 
-        <section class="py-24 px-8 bg-slate-50" id="requirements-page">
-    <div class="max-w-screen-2xl mx-auto">
-
-        <!-- Header -->
-        <div class="mb-16 max-w-3xl">
-            <h2 class="text-[#00D1E0] font-headline font-bold text-5xl tracking-tighter">
-                ĐỐI TƯỢNG
-            </h2>
-            <div class="h-1 w-28 bg-secondary-container mt-4 mb-6"></div>
-            <p class="text-slate-500 text-base leading-relaxed">
-                Chương trình dành cho sinh viên công nghệ - kỹ thuật có định hướng phát triển chuyên sâu,
-                sẵn sàng học nhanh, làm thật và bứt tốc trong môi trường doanh nghiệp.
-            </p>
-        </div>
-
-        <!-- Content -->
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 items-stretch">
-
-            <!-- LEFT -->
-            <div class="bg-white p-8 border border-slate-100 shadow-xl flex flex-col">
-
-                <h3 class="text-2xl font-headline font-bold mb-8 uppercase">
-                    Tiêu chí chính
-                </h3>
-
-                <ul class="space-y-6 flex-1">
-
-                    <li class="flex gap-4">
-                        <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2"></div>
-                        <div>
-                            <h4 class="font-bold">Sinh viên năm 3 hoặc năm cuối</h4>
-                            <p class="text-sm text-slate-600 mt-1">
-                                Theo học các ngành CNTT, Điện tử Viễn thông hoặc tương đương.
-                            </p>
-                        </div>
-                    </li>
-
-                    <li class="flex gap-4">
-                        <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2"></div>
-                        <div>
-                            <h4 class="font-bold">Địa điểm làm việc</h4>
-                            <p class="text-sm text-slate-600 mt-1">
-                                Có thể làm việc tại Hà Nội hoặc TP. Hồ Chí Minh.
-                            </p>
-                        </div>
-                    </li>
-
-                    <li class="flex gap-4">
-                        <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2"></div>
-                        <div>
-                            <h4 class="font-bold">Yêu cầu học lực</h4>
-                            <p class="text-sm text-slate-600 mt-1">
-                                GPA từ 7.0/10 hoặc 2.8/4.0 trở lên.
-                            </p>
-                        </div>
-                    </li>
-
-                    <li class="flex gap-4">
-                        <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2"></div>
-                        <div>
-                            <h4 class="font-bold">Định hướng phát triển</h4>
-                            <p class="text-sm text-slate-600 mt-1">
-                                Theo các lĩnh vực Lập trình, AI, Hệ thống, Bảo mật...
-                            </p>
-                        </div>
-                    </li>
-
-                    <li class="flex gap-4">
-                        <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2"></div>
-                        <div>
-                            <h4 class="font-bold">Điểm cộng</h4>
-                            <p class="text-sm text-slate-600 mt-1">
-                                Tham gia dự án cá nhân, cộng đồng hoặc cuộc thi công nghệ.
-                            </p>
-                        </div>
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <!-- RIGHT -->
-            <div class="bg-white p-8 border border-slate-100 shadow-xl flex flex-col">
-
-                <!-- Title -->
-                <div class="flex justify-between items-center mb-8">
-                    <h3 class="text-2xl font-headline font-bold uppercase">
-                        Chứng chỉ ưu tiên
-                    </h3>
-                    <span class="text-xs font-bold tracking-widest text-[#00D1E0]">
-                        THEO NHÓM
-                    </span>
-                </div>
-
-                <!-- Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
-
-                    <div class="p-4 bg-slate-50 border">
-                        <h4 class="font-bold mb-1">Viễn thông</h4>
-                        <p class="text-sm text-slate-600">CCNA, CCNP(**), 5G</p>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 border">
-                        <h4 class="font-bold mb-1">CNTT</h4>
-                        <p class="text-sm text-slate-600">AWS(**), Azure</p>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 border">
-                        <h4 class="font-bold mb-1">AI & Data</h4>
-                        <p class="text-sm text-slate-600">AI/ML, Microsoft(**)</p>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 border">
-                        <h4 class="font-bold mb-1">Bán dẫn</h4>
-                        <p class="text-sm text-slate-600">IC Design(**)</p>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 border">
-                        <h4 class="font-bold mb-1">ATTT</h4>
-                        <p class="text-sm text-slate-600">CEH, OSCP(**)</p>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 border">
-                        <h4 class="font-bold mb-1">Điện</h4>
-                        <p class="text-sm text-slate-600">CDCP(**), TIA-942</p>
-                    </div>
-
-                </div>
-
-                <!-- NOTE (auto push xuống đáy) -->
-                <div class="mt-6 p-5 bg-amber-50 border border-amber-200 rounded-lg">
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="material-symbols-outlined text-amber-500">info</span>
-                        <span class="text-sm font-bold uppercase">Lưu ý</span>
-                    </div>
-                    <p class="text-sm text-slate-600">
-                        Các chứng chỉ (**) là lợi thế nổi bật khi đánh giá hồ sơ.
+        <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50" id="requirements-page">
+            <div class="max-w-screen-2xl mx-auto">
+                <div class="mb-10 sm:mb-12 lg:mb-16 max-w-3xl">
+                    <h2
+                        class="text-[#00D1E0] font-headline font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tighter">
+                        ĐỐI TƯỢNG
+                    </h2>
+                    <div class="h-1 w-28 bg-secondary-container mt-4 mb-6"></div>
+                    <p class="text-slate-500 text-base leading-relaxed">
+                        Chương trình dành cho sinh viên công nghệ - kỹ thuật có định hướng phát triển chuyên sâu,
+                        sẵn sàng học nhanh, làm thật và bứt tốc trong môi trường doanh nghiệp.
                     </p>
                 </div>
 
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+                    <div class="bg-white p-6 sm:p-8 border border-slate-100 shadow-xl flex flex-col rounded-2xl">
+                        <h3 class="text-xl sm:text-2xl font-headline font-bold mb-6 sm:mb-8 uppercase">
+                            Tiêu chí chính
+                        </h3>
+
+                        <ul class="space-y-5 sm:space-y-6 flex-1">
+                            <li class="flex gap-4">
+                                <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2 shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base sm:text-lg">Sinh viên năm 3 hoặc năm cuối</h4>
+                                    <p class="text-sm text-slate-600 mt-1">
+                                        Theo học các ngành CNTT, Điện tử Viễn thông hoặc tương đương.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="flex gap-4">
+                                <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2 shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base sm:text-lg">Địa điểm làm việc</h4>
+                                    <p class="text-sm text-slate-600 mt-1">
+                                        Có thể làm việc tại Hà Nội hoặc TP. Hồ Chí Minh.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="flex gap-4">
+                                <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2 shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base sm:text-lg">Yêu cầu học lực</h4>
+                                    <p class="text-sm text-slate-600 mt-1">
+                                        GPA từ 7.0/10 hoặc 2.8/4.0 trở lên.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="flex gap-4">
+                                <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2 shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base sm:text-lg">Định hướng phát triển</h4>
+                                    <p class="text-sm text-slate-600 mt-1">
+                                        Theo các lĩnh vực Lập trình, AI, Hệ thống, Bảo mật...
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="flex gap-4">
+                                <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2 shrink-0"></div>
+                                <div>
+                                    <h4 class="font-bold text-base sm:text-lg">Điểm cộng</h4>
+                                    <p class="text-sm text-slate-600 mt-1">
+                                        Tham gia dự án cá nhân, cộng đồng hoặc cuộc thi công nghệ.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 sm:p-8 border border-slate-100 shadow-xl flex flex-col rounded-2xl">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6 sm:mb-8">
+                            <h3 class="text-xl sm:text-2xl font-headline font-bold uppercase">
+                                Chứng chỉ ưu tiên
+                            </h3>
+                            <span class="text-xs font-bold tracking-widest text-[#00D1E0]">
+                                THEO NHÓM
+                            </span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
+                            <div class="p-4 bg-slate-50 border rounded-xl">
+                                <h4 class="font-bold mb-1 text-base sm:text-lg">Viễn thông</h4>
+                                <p class="text-sm text-slate-600">CCNA, CCNP(**), Chứng chỉ về 5G, Optical
+                                    Networking…</p>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 border rounded-xl">
+                                <h4 class="font-bold mb-1 text-base sm:text-lg">CNTT</h4>
+                                <p class="text-sm text-slate-600">AWS(**), Microsoft Azure, BA, QC…</p>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 border rounded-xl">
+                                <h4 class="font-bold mb-1 text-base sm:text-lg">AI &amp; Data</h4>
+                                <p class="text-sm text-slate-600">AI/ML; Microsoft Certified (**)</p>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 border rounded-xl">
+                                <h4 class="font-bold mb-1 text-base sm:text-lg">Bán dẫn</h4>
+                                <p class="text-sm text-slate-600">IC Design(**), FPGA</p>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 border rounded-xl">
+                                <h4 class="font-bold mb-1 text-base sm:text-lg">ATTT</h4>
+                                <p class="text-sm text-slate-600">SSCP, CEH, OSCP(**), CompTIA</p>
+                            </div>
+
+                            <div class="p-4 bg-slate-50 border rounded-xl">
+                                <h4 class="font-bold mb-1 text-base sm:text-lg">Điện</h4>
+                                <p class="text-sm text-slate-600">CDCP(**), TIA-942 Design, Uptime Institute - ATS,
+                                    AutoCAD, Revit (BIM)</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-5 bg-amber-50 border border-amber-200 rounded-xl">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="material-symbols-outlined text-amber-500">info</span>
+                                <span class="text-sm font-bold uppercase">Lưu ý</span>
+                            </div>
+                            <p class="text-sm text-slate-600">
+                                Các chứng chỉ (**) là lợi thế nổi bật khi đánh giá hồ sơ.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-        </div>
-    </div>
-</section>
-
-        <section class="py-24 px-8 bg-white">
-            <div class="max-w-screen-2xl mx-auto space-y-16">
+        <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white">
+            <div class="max-w-screen-2xl mx-auto space-y-12 sm:space-y-16">
                 <div class="text-center space-y-4">
-                    <h2 class="text-slate-900 font-headline font-bold text-4xl tracking-tighter">ĐỘI NGŨ DẪN DẮT</h2>
-                    <p class="text-slate-500">Gặp gỡ những "kiến trúc sư" công nghệ tại FPT Telecom</p>
+                    <h2 class="text-slate-900 font-headline font-bold text-3xl sm:text-4xl tracking-tighter">ĐỘI NGŨ
+                        DẪN DẮT</h2>
+                    <p class="text-slate-500 text-sm sm:text-base">Gặp gỡ những "kiến trúc sư" công nghệ tại FPT
+                        Telecom</p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-8 justify-items-center">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6 sm:gap-8 justify-items-center">
                     <button type="button"
-                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left"
+                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
                         data-expert="trung">
                         <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
                             <img alt="Expert Lê Trung"
                                 class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
                                 src="Lê_Trung.png" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
                             </div>
                         </div>
                         <div class="absolute bottom-6 left-6 right-6">
@@ -893,14 +1072,13 @@
                     </button>
 
                     <button type="button"
-                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left"
+                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
                         data-expert="than">
                         <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
                             <img alt="Expert Nguyễn Trọng Thân"
                                 class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
                                 src="Nguyễn_Trọng_Thân.png" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
                             </div>
                         </div>
                         <div class="absolute bottom-6 left-6 right-6">
@@ -910,32 +1088,30 @@
                     </button>
 
                     <button type="button"
-                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left"
+                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
                         data-expert="cong">
                         <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
                             <img alt="Expert Nguyễn Thành Công"
                                 class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
                                 src="Nguyễn_Thành_Công.png" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
                             </div>
                         </div>
                         <div class="absolute bottom-6 left-6 right-6">
                             <h3 class="text-xl font-headline font-bold text-white">Nguyễn Thành Công</h3>
-                            <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Công nghệ &amp;
-                                Dữ liệu</p>
+                            <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Công nghệ
+                                &amp; Dữ liệu</p>
                         </div>
                     </button>
 
                     <button type="button"
-                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left"
+                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
                         data-expert="quyet">
                         <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
                             <img alt="Expert Nguyễn Văn Quyết"
                                 class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
                                 src="Nguyễn_Văn_Quyết.png" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
                             </div>
                         </div>
                         <div class="absolute bottom-6 left-6 right-6">
@@ -945,15 +1121,13 @@
                     </button>
 
                     <button type="button"
-                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left"
+                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
                         data-expert="sang">
                         <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
                             <img alt="Expert Huỳnh Quang Sang"
                                 class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
-                                src="Huỳnh_Quang_Sang.jpg"
-                                onerror="this.onerror=null; this.src='Hoangbin4.jpg';" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                src="Huỳnh_Quang_Sang.jpg" onerror="this.onerror=null; this.src='Hoangbin4.jpg';" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
                             </div>
                         </div>
                         <div class="absolute bottom-6 left-6 right-6">
@@ -963,26 +1137,25 @@
                     </button>
                 </div>
 
-                <div class="pt-20">
+                <div class="pt-6 sm:pt-10 lg:pt-20">
                     <h3
-                        class="text-slate-900 font-headline font-bold text-2xl tracking-tighter mb-8 flex items-center gap-4">
+                        class="text-slate-900 font-headline font-bold text-xl sm:text-2xl tracking-tighter mb-6 sm:mb-8 flex items-center gap-4">
                         <span class="w-12 h-[1px] bg-slate-300"></span>
-                        THẾ HỆ KẾ THỪA (ALUMNI)
+                        CỰU SINH VIÊN CÔNG NGHỆ TẬP SỰ
                     </h3>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-                        <div class="alumni-card bg-white border border-slate-100 shadow-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                        <div class="alumni-card bg-white border border-slate-100 shadow-sm rounded-2xl">
                             <div class="alumni-image-wrap">
                                 <img src="Nguyễn_Ngọc_Phú.jpg" alt="Nguyễn Ngọc Phú" class="alumni-image">
                                 <div class="alumni-overlay">
                                     <div class="alumni-overlay-content text-white">
-                                        <div
-                                            class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
+                                        <div class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
                                             Chi tiết</div>
                                         <h4 class="font-headline font-bold text-xl mb-2">Nguyễn Ngọc Phú</h4>
                                         <p class="text-sm leading-relaxed text-slate-100">
-                                            Phú là cựu học viên SVCNTS 2024, hiện theo học CNTT liên kết AUT tại ĐH Khoa
-                                            học Tự nhiên TP.HCM. Bạn đã tham gia các hệ thống như VOC, OmniAgent,
+                                            Phú là cựu học viên SVCNTS 2024, hiện theo học CNTT liên kết AUT tại ĐH
+                                            Khoa học Tự nhiên TP.HCM. Bạn đã tham gia các hệ thống như VOC, OmniAgent,
                                             OmniSR, phát triển năng lực fullstack và tối ưu hệ thống với Redis, MySQL,
                                             Kafka.
                                         </p>
@@ -996,13 +1169,12 @@
                             </div>
                         </div>
 
-                        <div class="alumni-card bg-white border border-slate-100 shadow-sm">
+                        <div class="alumni-card bg-white border border-slate-100 shadow-sm rounded-2xl">
                             <div class="alumni-image-wrap">
                                 <img src="Lê_Thị_Hồng_Ngọc.png" alt="Lê Thị Hồng Ngọt" class="alumni-image">
                                 <div class="alumni-overlay">
                                     <div class="alumni-overlay-content text-white">
-                                        <div
-                                            class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
+                                        <div class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
                                             Chi tiết</div>
                                         <h4 class="font-headline font-bold text-xl mb-2">Lê Thị Hồng Ngọt</h4>
                                         <p class="text-sm leading-relaxed text-slate-100">
@@ -1021,20 +1193,20 @@
                             </div>
                         </div>
 
-                        <div class="alumni-card bg-white border border-slate-100 shadow-sm">
+                        <div class="alumni-card bg-white border border-slate-100 shadow-sm rounded-2xl">
                             <div class="alumni-image-wrap">
                                 <img src="Phan_thị_thương_bình.PNG" alt="Phan Thị Hương Bình" class="alumni-image">
                                 <div class="alumni-overlay">
                                     <div class="alumni-overlay-content text-white">
-                                        <div
-                                            class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
+                                        <div class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
                                             Chi tiết</div>
                                         <h4 class="font-headline font-bold text-xl mb-2">Phan Thị Hương Bình</h4>
                                         <p class="text-sm leading-relaxed text-slate-100">
-                                            Bình là cựu học viên SVCNTS 2024, tốt nghiệp Đại học Tài chính - Marketing,
-                                            hiện làm QC Manual tại FPT Telecom. Bạn đã tham gia kiểm thử các hệ thống
-                                            như HRIS, Billing Hub, ECOM, FPT.vn và Customer 360, đồng thời ứng dụng tư
-                                            duy “AI-first” để tối ưu quy trình và nâng cao hiệu quả công việc.
+                                            Bình là cựu học viên SVCNTS 2024, tốt nghiệp Đại học Tài chính -
+                                            Marketing, hiện làm QC Manual tại FPT Telecom. Bạn đã tham gia kiểm thử
+                                            các hệ thống như HRIS, Billing Hub, ECOM, FPT.vn và Customer 360, đồng
+                                            thời ứng dụng tư duy “AI-first” để tối ưu quy trình và nâng cao hiệu quả
+                                            công việc.
                                         </p>
                                     </div>
                                 </div>
@@ -1046,13 +1218,12 @@
                             </div>
                         </div>
 
-                        <div class="alumni-card bg-white border border-slate-100 shadow-sm">
+                        <div class="alumni-card bg-white border border-slate-100 shadow-sm rounded-2xl">
                             <div class="alumni-image-wrap">
                                 <img src="Nguyễn_Văn_Quang_Hưng.png" alt="Nguyễn Văn Quang Hưng" class="alumni-image">
                                 <div class="alumni-overlay">
                                     <div class="alumni-overlay-content text-white">
-                                        <div
-                                            class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
+                                        <div class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
                                             Chi tiết</div>
                                         <h4 class="font-headline font-bold text-xl mb-2">Nguyễn Văn Quang Hưng</h4>
                                         <p class="text-sm leading-relaxed text-slate-100">
@@ -1076,125 +1247,126 @@
             </div>
         </section>
 
-        <section class="py-24 px-8 bg-slate-50 relative overflow-hidden" id="process">
-            <div class="max-w-4xl mx-auto space-y-16 relative z-10">
+        <section class="pt-2 pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden"
+            id="process">
+            <div class="max-w-4xl mx-auto space-y-12 sm:space-y-16 relative z-10">
                 <div class="text-center space-y-4">
-                    <h2 class="text-[#00D1E0] font-headline font-bold text-4xl tracking-tighter">QUY TRÌNH TUYỂN CHỌN
-                    </h2>
-                    <p class="text-slate-500">Các mốc thời gian quan trọng bạn cần nắm vững</p>
+                    <h2 class="text-[#00D1E0] font-headline font-bold text-3xl sm:text-4xl tracking-tighter">QUY TRÌNH
+                        TUYỂN CHỌN</h2>
+                    <p class="text-slate-500 text-sm sm:text-base">Các mốc thời gian quan trọng bạn cần nắm vững</p>
                 </div>
 
                 <div class="space-y-4">
-                    <div class="process-item group bg-white p-6 cursor-pointer shadow-sm">
-                        <div class="process-active-bar"></div>
-                        <div class="flex items-center justify-between process-toggle">
-                            <div class="flex items-center gap-6">
-                                <span class="step-number font-headline font-bold text-4xl text-slate-200">01</span>
+                    <div class="process-item active group bg-white p-5 sm:p-6 cursor-pointer shadow-sm rounded-2xl">
+                        <div class="process-active-bar rounded-l-2xl"></div>
+                        <div class="flex items-start sm:items-center justify-between gap-4 process-toggle">
+                            <div class="flex items-start sm:items-center gap-4 sm:gap-6">
+                                <span class="step-number font-headline font-bold text-3xl sm:text-4xl text-slate-200">01</span>
                                 <h3
-                                    class="step-title text-xl font-headline font-bold text-slate-800 uppercase tracking-wider">
+                                    class="step-title text-base sm:text-xl font-headline font-bold text-slate-800 uppercase tracking-wider">
                                     Đăng ký ứng tuyển</h3>
                             </div>
-                            <span class="process-icon material-symbols-outlined text-[#00D1E0]">expand_more</span>
+                            <span class="process-icon material-symbols-outlined text-[#00D1E0] shrink-0">expand_more</span>
                         </div>
-                        <div class="process-content pl-16 text-slate-600 text-sm max-w-2xl">
+                        <div class="process-content text-slate-600 text-sm max-w-2xl sm:pl-16">
                             Ứng viên hoàn tất biểu mẫu trực tuyến, đính kèm CV và sản phẩm cá nhân nếu có. Hệ thống sẽ
                             phản hồi email xác nhận và mã hồ sơ sau khi đăng ký thành công.
                         </div>
                     </div>
 
-                    <div class="process-item active group bg-white p-6 cursor-pointer shadow-sm">
-                        <div class="process-active-bar"></div>
-                        <div class="flex items-center justify-between process-toggle">
-                            <div class="flex items-center gap-6">
-                                <span class="step-number font-headline font-bold text-4xl text-slate-200">02</span>
+                    <div class="process-item group bg-white p-5 sm:p-6 cursor-pointer shadow-sm rounded-2xl">
+                        <div class="process-active-bar rounded-l-2xl"></div>
+                        <div class="flex items-start sm:items-center justify-between gap-4 process-toggle">
+                            <div class="flex items-start sm:items-center gap-4 sm:gap-6">
+                                <span class="step-number font-headline font-bold text-3xl sm:text-4xl text-slate-200">02</span>
                                 <h3
-                                    class="step-title text-xl font-headline font-bold text-slate-800 uppercase tracking-wider">
+                                    class="step-title text-base sm:text-xl font-headline font-bold text-slate-800 uppercase tracking-wider">
                                     Sàng lọc hồ sơ</h3>
                             </div>
-                            <span class="process-icon material-symbols-outlined text-[#00D1E0]">expand_more</span>
+                            <span class="process-icon material-symbols-outlined text-[#00D1E0] shrink-0">expand_more</span>
                         </div>
-                        <div class="process-content pl-16 text-slate-600 text-sm max-w-2xl">
-                            Phòng nhân sự và mentor chuyên môn sẽ đánh giá hồ sơ dựa trên GPA, dự án thực tế, hoạt động
-                            học thuật và mức độ phù hợp với định hướng phát triển của chương trình tập sự.
+                        <div class="process-content text-slate-600 text-sm max-w-2xl sm:pl-16">
+                            Phòng nhân sự và mentor chuyên môn sẽ đánh giá hồ sơ dựa trên GPA, dự án thực tế, hoạt
+                            động học thuật và mức độ phù hợp với định hướng phát triển của chương trình tập sự.
                         </div>
                     </div>
 
-                    <div class="process-item group bg-white p-6 cursor-pointer shadow-sm">
-                        <div class="process-active-bar"></div>
-                        <div class="flex items-center justify-between process-toggle">
-                            <div class="flex items-center gap-6">
-                                <span class="step-number font-headline font-bold text-4xl text-slate-200">03</span>
+                    <div class="process-item group bg-white p-5 sm:p-6 cursor-pointer shadow-sm rounded-2xl">
+                        <div class="process-active-bar rounded-l-2xl"></div>
+                        <div class="flex items-start sm:items-center justify-between gap-4 process-toggle">
+                            <div class="flex items-start sm:items-center gap-4 sm:gap-6">
+                                <span class="step-number font-headline font-bold text-3xl sm:text-4xl text-slate-200">03</span>
                                 <h3
-                                    class="step-title text-xl font-headline font-bold text-slate-800 uppercase tracking-wider">
+                                    class="step-title text-base sm:text-xl font-headline font-bold text-slate-800 uppercase tracking-wider">
                                     Bài Test năng lực (Technical &amp; IQ)</h3>
                             </div>
-                            <span class="process-icon material-symbols-outlined text-[#00D1E0]">expand_more</span>
+                            <span class="process-icon material-symbols-outlined text-[#00D1E0] shrink-0">expand_more</span>
                         </div>
-                        <div class="process-content pl-16 text-slate-600 text-sm max-w-2xl">
+                        <div class="process-content text-slate-600 text-sm max-w-2xl sm:pl-16">
                             Bài test gồm phần logic, kiến thức nền và tình huống xử lý thực tế. Ứng viên có 45 phút
-                            làm
-                            bài online và kết quả sơ bộ được cập nhật trong vòng 24 giờ.
+                            làm bài online và kết quả sơ bộ được cập nhật trong vòng 24 giờ.
                         </div>
                     </div>
 
-                    <div class="process-item group bg-white p-6 cursor-pointer shadow-sm">
-                        <div class="process-active-bar"></div>
-                        <div class="flex items-center justify-between process-toggle">
-                            <div class="flex items-center gap-6">
-                                <span class="step-number font-headline font-bold text-4xl text-slate-200">04</span>
+                    <div class="process-item group bg-white p-5 sm:p-6 cursor-pointer shadow-sm rounded-2xl">
+                        <div class="process-active-bar rounded-l-2xl"></div>
+                        <div class="flex items-start sm:items-center justify-between gap-4 process-toggle">
+                            <div class="flex items-start sm:items-center gap-4 sm:gap-6">
+                                <span class="step-number font-headline font-bold text-3xl sm:text-4xl text-slate-200">04</span>
                                 <h3
-                                    class="step-title text-xl font-headline font-bold text-slate-800 uppercase tracking-wider">
+                                    class="step-title text-base sm:text-xl font-headline font-bold text-slate-800 uppercase tracking-wider">
                                     Phỏng vấn cùng chuyên gia</h3>
                             </div>
-                            <span class="process-icon material-symbols-outlined text-[#00D1E0]">expand_more</span>
+                            <span class="process-icon material-symbols-outlined text-[#00D1E0] shrink-0">expand_more</span>
                         </div>
-                        <div class="process-content pl-16 text-slate-600 text-sm max-w-2xl">
-                            Vòng này tập trung đánh giá tư duy giải quyết vấn đề, khả năng tự học, giao tiếp chuyên môn
-                            và mức độ phù hợp với team dự án.
+                        <div class="process-content text-slate-600 text-sm max-w-2xl sm:pl-16">
+                            Vòng này tập trung đánh giá tư duy giải quyết vấn đề, khả năng tự học, giao tiếp chuyên
+                            môn và mức độ phù hợp với team dự án.
                         </div>
                     </div>
 
-                    <div class="process-item group bg-white p-6 cursor-pointer shadow-sm">
-                        <div class="process-active-bar"></div>
-                        <div class="flex items-center justify-between process-toggle">
-                            <div class="flex items-center gap-6">
-                                <span class="step-number font-headline font-bold text-4xl text-slate-200">05</span>
+                    <div class="process-item group bg-white p-5 sm:p-6 cursor-pointer shadow-sm rounded-2xl">
+                        <div class="process-active-bar rounded-l-2xl"></div>
+                        <div class="flex items-start sm:items-center justify-between gap-4 process-toggle">
+                            <div class="flex items-start sm:items-center gap-4 sm:gap-6">
+                                <span class="step-number font-headline font-bold text-3xl sm:text-4xl text-slate-200">05</span>
                                 <h3
-                                    class="step-title text-xl font-headline font-bold text-slate-800 uppercase tracking-wider">
+                                    class="step-title text-base sm:text-xl font-headline font-bold text-slate-800 uppercase tracking-wider">
                                     Onboarding &amp; Training</h3>
                             </div>
-                            <span class="process-icon material-symbols-outlined text-[#00D1E0]">expand_more</span>
+                            <span class="process-icon material-symbols-outlined text-[#00D1E0] shrink-0">expand_more</span>
                         </div>
-                        <div class="process-content pl-16 text-slate-600 text-sm max-w-2xl">
+                        <div class="process-content text-slate-600 text-sm max-w-2xl sm:pl-16">
                             Sau khi trúng tuyển, ứng viên tham gia tuần định hướng, được ghép mentor 1:1 và bắt đầu
-                            tham
-                            gia các đầu việc phù hợp ngay từ tháng đầu tiên.
+                            tham gia các đầu việc phù hợp ngay từ tháng đầu tiên.
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 px-8" id="register">
+        <section class="pt-2 pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-8" id="register">
             <div class="max-w-4xl mx-auto">
                 <div
-                    class="bg-white p-8 md:p-12 relative overflow-hidden border border-slate-100 shadow-2xl shadow-slate-200/60">
-                    <div class="absolute top-0 right-0 w-32 h-32 border-t-2 border-r-2 border-[#00D1E0]/10"></div>
+                    class="bg-white p-5 sm:p-8 md:p-12 relative overflow-hidden border border-slate-100 shadow-2xl shadow-slate-200/60 rounded-2xl sm:rounded-3xl">
                     <div
-                        class="absolute bottom-0 left-0 w-32 h-32 border-b-2 border-l-2 border-secondary-container/10">
+                        class="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 border-t-2 border-r-2 border-[#00D1E0]/10">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-24 sm:w-32 h-24 sm:h-32 border-b-2 border-l-2 border-secondary-container/10">
                     </div>
 
                     <div class="relative z-10">
-                        <div class="text-center space-y-4 mb-12">
-                            <h2 class="text-slate-900 font-headline font-bold text-4xl tracking-tighter">ĐĂNG KÝ NGAY
-                            </h2>
-                            <p class="text-slate-500">Bắt đầu hành trình chinh phục Deep Tech cùng FPT Telecom</p>
+                        <div class="text-center space-y-4 mb-8 sm:mb-12">
+                            <h2 class="text-slate-900 font-headline font-bold text-3xl sm:text-4xl tracking-tighter">
+                                ĐĂNG KÝ NGAY</h2>
+                            <p class="text-slate-500 text-sm sm:text-base">Bắt đầu hành trình chinh phục Deep Tech cùng
+                                FPT Telecom</p>
                         </div>
 
-                        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <form class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Họ
+                                <label class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Họ
                                     và tên *</label>
                                 <input
                                     class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
@@ -1202,8 +1374,7 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Trường
+                                <label class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Trường
                                     đại học *</label>
                                 <input
                                     class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
@@ -1211,8 +1382,7 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Khu
+                                <label class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Khu
                                     vực *</label>
                                 <select
                                     class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all">
@@ -1222,8 +1392,7 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Email
+                                <label class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Email
                                     *</label>
                                 <input
                                     class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
@@ -1231,8 +1400,7 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Chuyên
+                                <label class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Chuyên
                                     ngành *</label>
                                 <input
                                     class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
@@ -1240,8 +1408,7 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Vị
+                                <label class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Vị
                                     trí mong muốn *</label>
                                 <select
                                     class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all">
@@ -1255,8 +1422,7 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Số
+                                <label class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Số
                                     điện thoại *</label>
                                 <input
                                     class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
@@ -1264,8 +1430,7 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Điểm
+                                <label class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Điểm
                                     GPA *</label>
                                 <input
                                     class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
@@ -1273,20 +1438,19 @@
                             </div>
 
                             <div class="md:col-span-2 space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Upload
+                                <label class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Upload
                                     CV (PDF) *</label>
                                 <div
-                                    class="w-full bg-slate-50 border border-dashed border-slate-300 text-slate-500 p-8 text-center cursor-pointer hover:border-[#00D1E0] transition-all group">
+                                    class="w-full bg-slate-50 border border-dashed border-slate-300 text-slate-500 p-6 sm:p-8 text-center cursor-pointer hover:border-[#00D1E0] transition-all group rounded-2xl">
                                     <span
                                         class="material-symbols-outlined text-4xl mb-2 group-hover:text-[#00D1E0] transition-colors">cloud_upload</span>
-                                    <p>Kéo thả hoặc click để tải lên hồ sơ của bạn</p>
+                                    <p class="text-sm sm:text-base">Kéo thả hoặc click để tải lên hồ sơ của bạn</p>
                                 </div>
                             </div>
 
-                            <div class="md:col-span-2 pt-6">
+                            <div class="md:col-span-2 pt-4 sm:pt-6">
                                 <button
-                                    class="w-full bg-secondary-container text-white font-headline font-black py-5 uppercase tracking-[0.2em] hover:brightness-110 shadow-xl shadow-orange-500/20 orange-glow transition-all"
+                                    class="w-full bg-secondary-container text-white font-headline font-black py-4 sm:py-5 uppercase tracking-[0.18em] hover:brightness-110 shadow-xl shadow-orange-500/20 orange-glow transition-all rounded-xl"
                                     type="submit">
                                     Gửi Hồ Sơ Ứng Tuyển
                                 </button>
@@ -1303,7 +1467,7 @@
 
         <div class="relative min-h-screen flex items-center justify-center p-4 md:p-8">
             <div
-                class="expert-modal-panel relative w-full max-w-4xl bg-white border border-slate-200 shadow-2xl max-h-[90vh] overflow-y-auto">
+                class="expert-modal-panel relative w-full max-w-4xl bg-white border border-slate-200 shadow-2xl max-h-[90vh] overflow-y-auto rounded-2xl">
                 <button id="expertModalClose"
                     class="absolute top-4 right-4 z-10 w-11 h-11 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 transition-colors">
                     <span class="material-symbols-outlined text-slate-700">close</span>
@@ -1316,13 +1480,13 @@
                         </div>
                     </div>
 
-                    <div class="md:col-span-8 p-8 md:p-10">
+                    <div class="md:col-span-8 p-6 sm:p-8 md:p-10">
                         <div class="space-y-4">
                             <div>
                                 <h3 id="expertModalName"
-                                    class="text-slate-900 font-headline font-bold text-3xl tracking-tighter"></h3>
+                                    class="text-slate-900 font-headline font-bold text-2xl sm:text-3xl tracking-tighter"></h3>
                                 <p id="expertModalTitle"
-                                    class="text-[#00D1E0] font-bold uppercase tracking-widest text-sm mt-3"></p>
+                                    class="text-[#00D1E0] font-bold uppercase tracking-widest text-xs sm:text-sm mt-3"></p>
                             </div>
 
                             <div class="w-20 h-1 bg-secondary-container"></div>
@@ -1336,7 +1500,8 @@
     </div>
 
     <footer class="bg-slate-900 w-full border-t border-slate-800">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-12 py-16 w-full max-w-screen-2xl mx-auto">
+        <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 sm:px-8 lg:px-12 py-12 sm:py-16 w-full max-w-screen-2xl mx-auto">
             <div class="space-y-6">
                 <img src="logo.png" alt="logoFPT" class="w-auto h-10">
                 <p class="text-slate-400 font-['Inter'] text-sm tracking-wide max-w-xs leading-relaxed">
@@ -1345,14 +1510,15 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-4">
                 <div class="space-y-4">
                     <h5 class="text-white font-bold text-xs uppercase tracking-widest">Liên kết</h5>
                     <ul class="space-y-2 font-['Inter'] text-xs tracking-wide">
                         <li><a class="text-slate-400 hover:text-[#00D1E0] underline transition-all"
                                 href="https://www.facebook.com/fptjobs/?locale=vi_VN">Facebook</a></li>
                         <li><a class="text-slate-400 hover:text-[#00D1E0] underline transition-all"
-                                href="https://www.linkedin.com/company/fpt-telecom/posts/?feedView=all">LinkedIn</a></li>
+                                href="https://www.linkedin.com/company/fpt-telecom/posts/?feedView=all">LinkedIn</a>
+                        </li>
                         <li><a class="text-slate-400 hover:text-[#00D1E0] underline transition-all"
                                 href="https://www.tiktok.com/@tuyendungfpttelecom">TikTok</a></li>
                     </ul>
@@ -1377,6 +1543,97 @@
     </footer>
 
     <script>
+        const nav = document.getElementById('siteNav');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+        const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link, #mobileMenuPanel a[href^="#"]');
+
+        function getNavHeight() {
+            if (!nav) return 0;
+            return nav.getBoundingClientRect().height;
+        }
+
+        function closeMobileMenu() {
+            mobileMenuPanel.classList.remove('open');
+            mobileMenuIcon.textContent = 'menu';
+        }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuPanel.classList.toggle('open');
+                mobileMenuIcon.textContent = mobileMenuPanel.classList.contains('open') ? 'close' : 'menu';
+            });
+        }
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+
+        const heroBanner = document.getElementById('heroBanner');
+        const heroPanel = document.getElementById('heroPanel');
+        const heroCloseBtn = document.getElementById('heroCloseBtn');
+
+        function isMobileHero() {
+            return window.innerWidth <= 767;
+        }
+
+        function openHeroPanel() {
+            if (!heroBanner) return;
+            heroBanner.classList.add('show-panel');
+        }
+
+        function closeHeroPanel() {
+            if (!heroBanner) return;
+            heroBanner.classList.remove('show-panel');
+        }
+
+        if (heroBanner && heroPanel) {
+            heroBanner.addEventListener('click', function (e) {
+                if (!isMobileHero()) return;
+
+                const clickedInsidePanel = heroPanel.contains(e.target);
+
+                if (!heroBanner.classList.contains('show-panel')) {
+                    openHeroPanel();
+                    return;
+                }
+
+                if (!clickedInsidePanel) {
+                    closeHeroPanel();
+                }
+            });
+        }
+
+        if (heroCloseBtn) {
+            heroCloseBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                closeHeroPanel();
+            });
+        }
+
+        window.addEventListener('resize', () => {
+            if (!isMobileHero()) {
+                closeHeroPanel();
+            }
+        });
+
+        function scrollToSection(targetId) {
+            const target = document.querySelector(targetId);
+            if (!target) return;
+
+            const navHeight = getNavHeight();
+            const extraGap = window.innerWidth <= 767 ? 8 : 14;
+            const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navHeight - extraGap;
+
+            window.scrollTo({
+                top: Math.max(targetTop, 0),
+                behavior: 'smooth'
+            });
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
@@ -1386,14 +1643,14 @@
 
                 e.preventDefault();
 
-                const nav = document.querySelector('nav');
-                const navHeight = nav ? nav.offsetHeight : 0;
-                const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 12;
-
-                window.scrollTo({
-                    top: targetTop,
-                    behavior: 'smooth'
-                });
+                if (mobileMenuPanel.classList.contains('open')) {
+                    closeMobileMenu();
+                    setTimeout(() => {
+                        scrollToSection(targetId);
+                    }, 220);
+                } else {
+                    scrollToSection(targetId);
+                }
             });
         });
 
@@ -1417,12 +1674,11 @@
         const sections = document.querySelectorAll('section[id]');
 
         function setActiveNav() {
-            const nav = document.querySelector('nav');
-            const navHeight = nav ? nav.offsetHeight : 0;
+            const navHeight = getNavHeight();
             let currentSectionId = '';
 
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - navHeight - 80;
+                const sectionTop = section.offsetTop - navHeight - 120;
                 const sectionHeight = section.offsetHeight;
 
                 if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
@@ -1446,7 +1702,7 @@
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         function updateParallax() {
-            if (!benefitsSection || !parallaxMedia || prefersReducedMotion) return;
+            if (!benefitsSection || !parallaxMedia || prefersReducedMotion || window.innerWidth < 768) return;
 
             const rect = benefitsSection.getBoundingClientRect();
             const viewportHeight = window.innerHeight;
