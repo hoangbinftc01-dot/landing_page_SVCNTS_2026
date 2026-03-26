@@ -104,6 +104,102 @@
             border: 1px solid rgba(255, 255, 255, 0.32);
         }
 
+        .track-card {
+            position: relative;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.96) 100%);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(148, 163, 184, 0.10);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+            isolation: isolate;
+        }
+
+        .track-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg,
+                    rgba(0, 209, 224, 0.10) 0%,
+                    rgba(14, 165, 233, 0.05) 45%,
+                    rgba(235, 106, 27, 0.08) 100%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: 0;
+        }
+
+        .track-card::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00D1E0 0%, #0ea5e9 55%, #EB6A1B 100%);
+            opacity: 0.85;
+            transform: scaleX(0.22);
+            transform-origin: left center;
+            transition: transform 0.35s ease;
+            z-index: 1;
+        }
+
+        .track-card>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .track-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 209, 224, 0.28);
+            box-shadow: 0 22px 50px rgba(15, 23, 42, 0.14);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(240, 249, 255, 0.96) 100%);
+        }
+
+        .track-card:hover::before {
+            opacity: 1;
+        }
+
+        .track-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .track-card-icon {
+            transition: transform 0.35s ease, background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+            box-shadow: inset 0 0 0 1px rgba(0, 209, 224, 0.08);
+        }
+
+        .track-card:hover .track-card-icon {
+            transform: scale(1.12) rotate(-4deg);
+            background: linear-gradient(135deg, rgba(0, 209, 224, 0.16) 0%, rgba(14, 165, 233, 0.12) 100%);
+            color: #0284c7;
+            box-shadow: 0 10px 24px rgba(0, 209, 224, 0.12);
+        }
+
+        .track-card-title {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .track-card:hover .track-card-title {
+            color: #0369a1;
+            transform: translateX(2px);
+        }
+
+        .track-card-desc {
+            transition: color 0.3s ease;
+        }
+
+        .track-card:hover .track-card-desc {
+            color: #475569;
+        }
+
+        .track-card-ghost-icon {
+            opacity: 0.06;
+            transform: scale(1);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .track-card:hover .track-card-ghost-icon {
+            opacity: 0.12;
+            transform: scale(1.08);
+        }
+
         .orange-glow:hover {
             box-shadow: 0 0 20px rgba(235, 106, 27, 0.4);
         }
@@ -173,12 +269,93 @@
         }
 
         .benefit-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(226, 232, 240, 0.95);
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+            transition: transform 0.38s ease, box-shadow 0.38s ease, border-color 0.38s ease, background 0.38s ease;
+            isolation: isolate;
+        }
+
+        .benefit-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.42) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-18deg);
+            transition: left 0.7s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .benefit-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(0, 209, 224, 0.07) 0%,
+                    rgba(255, 255, 255, 0) 45%,
+                    rgba(235, 106, 27, 0.07) 100%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .benefit-card>* {
+            position: relative;
+            z-index: 2;
         }
 
         .benefit-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(148, 163, 184, 0.14);
+            transform: translateY(-12px) rotate(-0.6deg);
+            border-color: rgba(0, 209, 224, 0.3);
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 26px 56px rgba(15, 23, 42, 0.13);
+        }
+
+        .benefit-card:hover::before {
+            left: 140%;
+        }
+
+        .benefit-card:hover::after {
+            opacity: 1;
+        }
+
+        .benefit-icon {
+            transition: transform 0.35s ease, color 0.35s ease, filter 0.35s ease;
+        }
+
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.16) rotate(-8deg);
+            color: #ea580c;
+            filter: drop-shadow(0 8px 16px rgba(234, 88, 12, 0.16));
+        }
+
+        .benefit-title {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .benefit-card:hover .benefit-title {
+            color: #0f172a;
+            transform: translateX(4px);
+        }
+
+        .benefit-desc {
+            transition: color 0.3s ease;
+        }
+
+        .benefit-card:hover .benefit-desc {
+            color: #475569;
         }
 
         .benefits-parallax-media {
@@ -190,9 +367,12 @@
 
         .process-item {
             position: relative;
+            overflow: hidden;
             transition: all 0.35s ease;
             border: 1px solid #cbd5e1;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            border-radius: 1rem;
+            background: #ffffff;
         }
 
         .process-active-bar {
@@ -201,8 +381,10 @@
             top: 0;
             width: 0;
             height: 100%;
-            background: #00D1E0;
+            background: linear-gradient(180deg, #00D1E0 0%, #0ea5e9 100%);
             transition: width 0.3s ease;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
         }
 
         .process-content {
@@ -808,10 +990,11 @@
 
                 <div class="absolute left-[-20px] bottom-[110px] max-w-[720px]">
                     <div id="heroPanel"
-                        class="hero-lift-card relative rounded-[24px] sm:rounded-3xl p-5 sm:p-7 lg:p-8 overflow-hidden backdrop-blur-[18px] border border-white/15 shadow-[0_10px_40px_rgba(0,0,0,0.28)]">
+                        class="hero-lift-card relative rounded-[24px] sm:rounded-3xl p-5 sm:p-7 lg:p-8 overflow-hidden backdrop-blur-[24px] border border-white/15 shadow-[0_10px_40px_rgba(0,0,0,0.28)]">
 
                         <div
-                            class="absolute inset-0 bg-gradient-to-br from-[#000899]/48 via-[#512E66]/30 to-[#603778]/42">
+                            class="absolute inset-0 bg-gradient-to-br from-[#0ea5e9]/40 via-[#0284c7]/30 to-[#0369a1]/40">
+
                         </div>
 
                         <div class="hero-panel-shine absolute inset-0 opacity-0 pointer-events-none"></div>
@@ -852,116 +1035,105 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
-                    <div
-                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
-                        <div
-                            class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
+                    <div class="glass-card track-card p-6 sm:p-8 group relative overflow-hidden rounded-2xl">
+                        <div class="track-card-ghost-icon absolute top-0 right-0 p-4">
                             <span
                                 class="material-symbols-outlined text-6xl text-slate-900">settings_input_antenna</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">settings_input_antenna</span>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">Viễn thông</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
+                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">Viễn
+                                thông</h3>
+                            <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Vận hành hạ tầng viễn thông toàn quốc, nghiên cứu các chuẩn truyền dẫn mới nhất.
                             </p>
                         </div>
                     </div>
 
-                    <div
-                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
-                        <div
-                            class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
+                    <div class="glass-card track-card p-6 sm:p-8 group relative overflow-hidden rounded-2xl">
+                        <div class="track-card-ghost-icon absolute top-0 right-0 p-4">
                             <span class="material-symbols-outlined text-6xl text-slate-900">terminal</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">terminal</span>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">Công nghệ thông
-                                tin</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
+                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">Công
+                                nghệ thông tin</h3>
+                            <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Phát triển nền tảng ứng dụng, hệ thống billing, CRM và các giải pháp chuyển đổi số.
                             </p>
                         </div>
                     </div>
 
-                    <div
-                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
-                        <div
-                            class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
+                    <div class="glass-card track-card p-6 sm:p-8 group relative overflow-hidden rounded-2xl">
+                        <div class="track-card-ghost-icon absolute top-0 right-0 p-4">
                             <span class="material-symbols-outlined text-6xl text-slate-900">neurology</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">neurology</span>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">Dữ liệu &amp; Trí
-                                tuệ nhân tạo</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
+                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">Dữ
+                                liệu &amp; Trí tuệ nhân tạo</h3>
+                            <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Xây dựng Data Warehouse, phát triển mô hình AI và các hệ thống phân tích dữ liệu lớn.
                             </p>
                         </div>
                     </div>
 
-                    <div
-                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
-                        <div
-                            class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
+                    <div class="glass-card track-card p-6 sm:p-8 group relative overflow-hidden rounded-2xl">
+                        <div class="track-card-ghost-icon absolute top-0 right-0 p-4">
                             <span
                                 class="material-symbols-outlined text-6xl text-slate-900">precision_manufacturing</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">precision_manufacturing</span>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">Điện - Cơ điện tự
-                                động hóa</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
+                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">Điện
+                                - Cơ điện tự động hóa</h3>
+                            <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Vận hành hạ tầng Data Center, điện thông minh và hệ thống giám sát tự động.
                             </p>
                         </div>
                     </div>
 
-                    <div
-                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
-                        <div
-                            class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
+                    <div class="glass-card track-card p-6 sm:p-8 group relative overflow-hidden rounded-2xl">
+                        <div class="track-card-ghost-icon absolute top-0 right-0 p-4">
                             <span class="material-symbols-outlined text-6xl text-slate-900">security</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">security</span>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">An toàn thông tin
-                            </h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
+                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">An
+                                toàn thông tin</h3>
+                            <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Phòng thủ, phản ứng sự cố, pentest và bảo mật cloud toàn diện.
                             </p>
                         </div>
                     </div>
 
-                    <div
-                        class="glass-card p-6 sm:p-8 group hover:bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-500 relative overflow-hidden border border-slate-100 rounded-2xl">
-                        <div
-                            class="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
+                    <div class="glass-card track-card p-6 sm:p-8 group relative overflow-hidden rounded-2xl">
+                        <div class="track-card-ghost-icon absolute top-0 right-0 p-4">
                             <span class="material-symbols-outlined text-6xl text-slate-900">memory</span>
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6 group-hover:scale-110 transition-transform">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">memory</span>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-headline font-bold text-slate-900">Thiết kế vi mạch
-                                (IC) &amp; Phần cứng</h3>
-                            <p class="text-slate-600 text-sm leading-relaxed">
+                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">
+                                Thiết kế vi mạch (IC) &amp; Phần cứng</h3>
+                            <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Thiết kế vi mạch, tối ưu phần cứng cho các hệ thống thiết bị và IoT.
                             </p>
                         </div>
@@ -997,13 +1169,15 @@
                     <div
                         class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
-                            <div class="text-secondary-container shrink-0 mt-1">
+                            <div class="benefit-icon text-secondary-container shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">payments</span>
                             </div>
                             <div>
-                                <h4 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">Thu nhập
+                                <h4
+                                    class="benefit-title text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">
+                                    Thu nhập
                                     đột phá</h4>
-                                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                                <p class="benefit-desc text-slate-600 leading-relaxed text-sm sm:text-base">
                                     Bỏ túi lên đến <span class="font-bold text-slate-900">150 triệu VNĐ</span> khi vẫn
                                     là sinh viên.
                                 </p>
@@ -1014,13 +1188,15 @@
                     <div
                         class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
-                            <div class="text-secondary-container shrink-0 mt-1">
+                            <div class="benefit-icon text-secondary-container shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">science</span>
                             </div>
                             <div>
-                                <h4 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">Thực chiến
+                                <h4
+                                    class="benefit-title text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">
+                                    Thực chiến
                                     R&amp;D</h4>
-                                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                                <p class="benefit-desc text-slate-600 leading-relaxed text-sm sm:text-base">
                                     Được phát triển trong môi trường R&amp;D thực tế, tool bản quyền, hạ tầng tiên tiến
                                     và nền tảng AI hiện đại.
                                 </p>
@@ -1031,13 +1207,15 @@
                     <div
                         class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
-                            <div class="text-secondary-container shrink-0 mt-1">
+                            <div class="benefit-icon text-secondary-container shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">psychology</span>
                             </div>
                             <div>
-                                <h4 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">Đặc quyền
+                                <h4
+                                    class="benefit-title text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">
+                                    Đặc quyền
                                     Mentorship 1:1</h4>
-                                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                                <p class="benefit-desc text-slate-600 leading-relaxed text-sm sm:text-base">
                                     Được bảo trợ chuyên môn, đối thoại trực tiếp và kèm cặp 1:1 bởi các Chuyên gia
                                     Công nghệ hàng đầu.
                                 </p>
@@ -1048,13 +1226,15 @@
                     <div
                         class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
-                            <div class="text-secondary-container shrink-0 mt-1">
+                            <div class="benefit-icon text-secondary-container shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">workspace_premium</span>
                             </div>
                             <div>
-                                <h4 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">Bứt tốc
+                                <h4
+                                    class="benefit-title text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">
+                                    Bứt tốc
                                     sự nghiệp</h4>
-                                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                                <p class="benefit-desc text-slate-600 leading-relaxed text-sm sm:text-base">
                                     Nhận ngay khóa đào tạo công nghệ chuyên sâu. Được tài trợ <span
                                         class="font-bold text-slate-900">100% chi phí học &amp; thi</span>
                                     các chứng chỉ quốc tế như CCIE, CISSP,...
@@ -1066,13 +1246,15 @@
                     <div
                         class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl lg:col-span-2">
                         <div class="flex items-start gap-4">
-                            <div class="text-secondary-container shrink-0 mt-1">
+                            <div class="benefit-icon text-secondary-container shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">rocket_launch</span>
                             </div>
                             <div>
-                                <h4 class="text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">Lộ trình
+                                <h4
+                                    class="benefit-title text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">
+                                    Lộ trình
                                     Fast-track</h4>
-                                <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                                <p class="benefit-desc text-slate-600 leading-relaxed text-sm sm:text-base">
                                     Trở thành nhân viên chính thức và phát triển thành đội ngũ cán bộ công nghệ nòng
                                     cốt.
                                 </p>
