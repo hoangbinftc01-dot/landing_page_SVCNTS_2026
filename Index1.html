@@ -245,12 +245,162 @@
         }
 
         .expert-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            background: #e2e8f0;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            will-change: transform;
+            transition: transform 0.45s ease, box-shadow 0.45s ease, opacity 0.45s ease;
         }
 
         .expert-card:hover {
-            transform: translateY(-4px);
             box-shadow: 0 16px 36px rgba(148, 163, 184, 0.22);
+        }
+
+        .expert-card .img-frame {
+            border-radius: inherit;
+            overflow: hidden;
+        }
+
+        .expert-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transform: scale(1);
+            transition: transform 0.7s ease;
+            backface-visibility: hidden;
+        }
+
+        .expert-slide.active-center img {
+            transform: scale(1.03);
+        }
+
+        .expert-slide.near-center img {
+            transform: scale(1.01);
+        }
+
+        .expert-carousel-wrap {
+            position: relative;
+            width: 100%;
+            padding: 0 56px;
+        }
+
+        .expert-carousel-viewport {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .expert-carousel-track {
+            display: flex;
+            align-items: stretch;
+            gap: 24px;
+            will-change: transform;
+        }
+
+        .expert-slide {
+            flex: 0 0 calc((100% - 96px) / 5);
+            max-width: calc((100% - 96px) / 5);
+            opacity: 0.55;
+            transform: scale(0.92);
+            transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease;
+            transform-origin: center center;
+            will-change: transform, opacity;
+        }
+
+        .expert-slide.near-center {
+            opacity: 0.82;
+            transform: scale(0.97);
+        }
+
+        .expert-slide.active-center {
+            opacity: 1;
+            transform: scale(1.04);
+            z-index: 6;
+        }
+
+        .expert-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 1px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.95);
+            color: #0f172a;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .expert-nav-btn:hover {
+            transform: translateY(-50%) scale(1.06);
+            box-shadow: 0 16px 30px rgba(15, 23, 42, 0.18);
+            background: #ffffff;
+        }
+
+        .expert-nav-btn-prev {
+            left: 0;
+        }
+
+        .expert-nav-btn-next {
+            right: 0;
+        }
+
+        @media (max-width: 1279px) {
+            .expert-slide {
+                flex: 0 0 calc((100% - 48px) / 3);
+                max-width: calc((100% - 48px) / 3);
+                opacity: 0.62;
+                transform: scale(0.94);
+            }
+
+            .expert-slide.near-center {
+                opacity: 0.86;
+                transform: scale(0.98);
+            }
+
+            .expert-slide.active-center {
+                transform: scale(1.03);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .expert-carousel-wrap {
+                padding: 0 40px;
+            }
+
+            .expert-carousel-track {
+                gap: 16px;
+            }
+
+            .expert-slide {
+                flex: 0 0 calc((100% - 16px) / 2);
+                max-width: calc((100% - 16px) / 2);
+                opacity: 0.72;
+                transform: scale(0.97);
+            }
+
+            .expert-slide.near-center {
+                opacity: 0.92;
+                transform: scale(0.99);
+            }
+
+            .expert-slide.active-center {
+                transform: scale(1.01);
+            }
+
+            .expert-nav-btn {
+                width: 38px;
+                height: 38px;
+            }
         }
 
         .expert-modal {
@@ -436,6 +586,39 @@
             max-height: 320px;
         }
 
+        .hero-lift-card {
+            transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease, filter 0.32s ease;
+            will-change: transform, box-shadow;
+        }
+
+        .hero-panel-shine {
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.18) 0%,
+                    rgba(255, 255, 255, 0.08) 28%,
+                    rgba(255, 255, 255, 0.02) 55%,
+                    rgba(255, 255, 255, 0.12) 100%);
+            transition: opacity 0.32s ease;
+        }
+
+        .hero-lift-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+            border-color: rgba(255, 255, 255, 0.3);
+            filter: brightness(1.04);
+        }
+
+        .hero-lift-card:hover .hero-panel-shine {
+            opacity: 1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .hero-lift-card,
+            .hero-panel-shine {
+                transition: none;
+            }
+        }
+
         /* Tablet / iPad */
         @media (min-width: 768px) and (max-width: 1023px) {
             .hero-bg-desktop {
@@ -457,7 +640,7 @@
                 scroll-margin-top: 76px;
             }
 
-            .hero-cover-group {
+            #heroBanner {
                 min-height: 760px !important;
             }
 
@@ -606,69 +789,49 @@
 
     <main class="pt-[72px] sm:pt-20">
         <section id="heroBanner"
-            class="hero-cover-group relative min-h-[560px] sm:min-h-[760px] lg:min-h-[921px] w-full overflow-hidden">
+            class="relative min-h-[560px] sm:min-h-[760px] lg:min-h-[921px] w-full overflow-hidden">
+
+            <!-- Background -->
             <div class="hero-bg-media">
-                <img src="visual2.png" alt="Hero visual desktop" class="hero-bg-desktop" />
+                <img src="visual4.png" alt="Hero visual desktop" class="hero-bg-desktop" />
                 <img src="visual1.png" alt="Hero visual tablet" class="hero-bg-tablet" />
                 <img src="visual3.png" alt="Hero visual mobile" class="hero-bg-mobile" />
             </div>
 
+            <!-- Overlay -->
             <div class="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-slate-950/10"></div>
             <div class="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-white/10"></div>
 
-            <button type="button" id="heroTapHint" class="hero-tap-hint md:hidden">
-                <span class="material-symbols-outlined text-[18px]">touch_app</span>
-                Chạm để xem nội dung
-            </button>
-
+            <!-- Content -->
             <div
-                class="relative z-10 max-w-screen-2xl mx-auto min-h-[560px] sm:min-h-[760px] lg:min-h-[921px] px-4 sm:px-6 md:px-8 lg:px-10 flex items-end sm:items-center justify-center lg:justify-end pb-24 sm:pb-0">
-                <div class="w-full max-w-xl md:max-w-xl max-w-none">
+                class="relative z-10 max-w-screen-2xl mx-auto min-h-[560px] sm:min-h-[760px] lg:min-h-[921px] px-4 sm:px-6 md:px-8 lg:px-10">
+
+                <div class="absolute left-[-20px] bottom-[110px] max-w-[720px]">
                     <div id="heroPanel"
-                        class="hero-hover-panel relative rounded-[24px] sm:rounded-3xl p-5 sm:p-7 lg:p-10 overflow-hidden flex flex-col justify-center min-h-[320px] sm:min-h-[380px] lg:min-h-[420px]">
+                        class="hero-lift-card relative rounded-[24px] sm:rounded-3xl p-5 sm:p-7 lg:p-8 overflow-hidden backdrop-blur-[18px] border border-white/15 shadow-[0_10px_40px_rgba(0,0,0,0.28)]">
 
-                        <button type="button" id="heroCloseBtn" class="hero-close-btn md:hidden"
-                            aria-label="Đóng nội dung">
-                            <span class="material-symbols-outlined">close</span>
-                        </button>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-[#000899]/48 via-[#512E66]/30 to-[#603778]/42">
+                        </div>
 
-                        <div class="hero-hover-content relative z-10">
-                            <h1
-                                class="text-slate-900 font-headline font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-tight">
-                                SINH VIÊN CÔNG NGHỆ TẬP SỰ 2026
-                            </h1>
+                        <div class="hero-panel-shine absolute inset-0 opacity-0 pointer-events-none"></div>
 
+                        <div class="absolute inset-0 rounded-[24px] sm:rounded-3xl ring-1 ring-inset ring-white/10">
+                        </div>
+
+                        <div class="relative z-10 space-y-4">
                             <p
-                                class="mt-3 text-[#006970] font-headline font-semibold text-lg sm:text-xl lg:text-2xl tracking-tight">
-                                Master Deep Tech, Lead the Next
-                            </p>
-
-                            <div class="mt-5 w-24 h-1 bg-secondary-container rounded-full"></div>
-
-                            <p class="mt-5 text-slate-700 text-sm sm:text-base leading-7">
+                                class="text-white font-semibold text-sm sm:text-base lg:text-[17px] leading-7 sm:leading-8 [text-shadow:0_2px_8px_rgba(0,0,0,0.6)]">
                                 Chương trình tìm kiếm &amp; đào tạo tài năng trẻ lớn nhất dành cho Sinh viên khối ngành
                                 Công nghệ - Kỹ thuật.
                             </p>
 
-                            <p class="mt-4 text-slate-600 text-sm sm:text-base leading-7">
+                            <p
+                                class="text-white font-semibold text-sm sm:text-base lg:text-[17px] leading-7 sm:leading-8 [text-shadow:0_2px_8px_rgba(0,0,0,0.6)]">
                                 Nơi bạn được trải nghiệm môi trường làm việc thực tế, tham gia dự án thật và học hỏi từ
                                 các chuyên gia trong hệ sinh thái số hiện đại để tăng tốc kỹ năng, mở rộng tư duy và
                                 sẵn sàng trở thành thế hệ kỹ sư tương lai của FPT Telecom.
                             </p>
-
-                            <div class="mt-7 sm:mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
-                                <a href="#register"
-                                    class="inline-flex items-center justify-center gap-3 bg-secondary-container text-white px-5 sm:px-6 py-3 font-headline font-bold text-sm sm:text-base tracking-[0.12em] uppercase hover:scale-105 active:scale-95 transition-all orange-glow">
-                                    ỨNG TUYỂN NGAY!
-                                    <span class="material-symbols-outlined text-base">arrow_forward</span>
-                                </a>
-
-                                <div
-                                    class="inline-flex items-center justify-center sm:justify-start gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700 text-sm text-center sm:text-left">
-                                    <span class="material-symbols-outlined text-[#00D1E0]">school</span>
-                                    Dành cho sinh viên công nghệ - kỹ thuật
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1060,92 +1223,203 @@
                         Telecom</p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6 sm:gap-8 justify-items-center">
-                    <button type="button"
-                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
-                        data-expert="trung">
-                        <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
-                            <img alt="Expert Lê Trung"
-                                class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
-                                src="Lê_Trung.png" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
-                            </div>
-                        </div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <h3 class="text-xl font-headline font-bold text-white">Lê Trung</h3>
-                            <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Hạ tầng Viễn
-                                thông</p>
-                        </div>
+                <div class="expert-carousel-wrap relative">
+                    <button type="button" id="expertPrevBtn" class="expert-nav-btn expert-nav-btn-prev"
+                        aria-label="Chuyên gia trước">
+                        <span class="material-symbols-outlined">chevron_left</span>
                     </button>
 
-                    <button type="button"
-                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
-                        data-expert="than">
-                        <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
-                            <img alt="Expert Nguyễn Trọng Thân"
-                                class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
-                                src="Nguyễn_Trọng_Thân.png" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
-                            </div>
-                        </div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <h3 class="text-xl font-headline font-bold text-white">Nguyễn Trọng Thân</h3>
-                            <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">AI Chip</p>
-                        </div>
-                    </button>
+                    <div class="expert-carousel-viewport" id="expertCarouselViewport">
+                        <div class="expert-carousel-track" id="expertCarouselTrack">
+                            <!-- NHÓM GỐC -->
+                            <button type="button"
+                                class="expert-card expert-slide w-full group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
+                                data-expert="trung">
+                                <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
+                                    <img alt="Expert Lê Trung"
+                                        class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                                        src="Lê_Trung.png" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <h3 class="text-xl font-headline font-bold text-white">Lê Trung</h3>
+                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Hạ tầng
+                                        Viễn thông</p>
+                                </div>
+                            </button>
 
-                    <button type="button"
-                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
-                        data-expert="cong">
-                        <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
-                            <img alt="Expert Nguyễn Thành Công"
-                                class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
-                                src="Nguyễn_Thành_Công.png" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
-                            </div>
-                        </div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <h3 class="text-xl font-headline font-bold text-white">Nguyễn Thành Công</h3>
-                            <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Công nghệ
-                                &amp; Dữ liệu</p>
-                        </div>
-                    </button>
+                            <button type="button"
+                                class="expert-card expert-slide w-full group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
+                                data-expert="than">
+                                <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
+                                    <img alt="Expert Nguyễn Trọng Thân"
+                                        class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                                        src="Nguyễn_Trọng_Thân.png" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <h3 class="text-xl font-headline font-bold text-white">Nguyễn Trọng Thân</h3>
+                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">AI Chip
+                                    </p>
+                                </div>
+                            </button>
 
-                    <button type="button"
-                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
-                        data-expert="quyet">
-                        <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
-                            <img alt="Expert Nguyễn Văn Quyết"
-                                class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
-                                src="Nguyễn_Văn_Quyết.png" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
-                            </div>
-                        </div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <h3 class="text-xl font-headline font-bold text-white">Nguyễn Văn Quyết</h3>
-                            <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Data Center</p>
-                        </div>
-                    </button>
+                            <button type="button"
+                                class="expert-card expert-slide w-full group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
+                                data-expert="cong">
+                                <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
+                                    <img alt="Expert Nguyễn Thành Công"
+                                        class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                                        src="Nguyễn_Thành_Công.png" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <h3 class="text-xl font-headline font-bold text-white">Nguyễn Thành Công</h3>
+                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Công nghệ
+                                        &amp; Dữ liệu</p>
+                                </div>
+                            </button>
 
-                    <button type="button"
-                        class="expert-card w-full max-w-[320px] group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
-                        data-expert="sang">
-                        <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
-                            <img alt="Expert Huỳnh Quang Sang"
-                                class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
-                                src="Huỳnh_Quang_Sang.jpg" onerror="this.onerror=null; this.src='Hoangbin4.jpg';" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
-                            </div>
+                            <button type="button"
+                                class="expert-card expert-slide w-full group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
+                                data-expert="quyet">
+                                <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
+                                    <img alt="Expert Nguyễn Văn Quyết"
+                                        class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                                        src="Nguyễn_Văn_Quyết.png" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <h3 class="text-xl font-headline font-bold text-white">Nguyễn Văn Quyết</h3>
+                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Data
+                                        Center</p>
+                                </div>
+                            </button>
+
+                            <button type="button"
+                                class="expert-card expert-slide w-full group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
+                                data-expert="sang">
+                                <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
+                                    <img alt="Expert Huỳnh Quang Sang"
+                                        class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                                        src="Huỳnh_Quang_Sang.jpg"
+                                        onerror="this.onerror=null; this.src='Hoangbin4.jpg';" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <h3 class="text-xl font-headline font-bold text-white">Huỳnh Quang Sang</h3>
+                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">R&amp;D
+                                    </p>
+                                </div>
+                            </button>
+
+                            <!-- NHÂN BẢN LẦN 1 -->
+                            <button type="button"
+                                class="expert-card expert-slide w-full group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
+                                data-expert="trung" aria-hidden="true">
+                                <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
+                                    <img alt="Expert Lê Trung"
+                                        class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                                        src="Lê_Trung.png" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <h3 class="text-xl font-headline font-bold text-white">Lê Trung</h3>
+                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Hạ tầng
+                                        Viễn thông</p>
+                                </div>
+                            </button>
+
+                            <button type="button"
+                                class="expert-card expert-slide w-full group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
+                                data-expert="than" aria-hidden="true">
+                                <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
+                                    <img alt="Expert Nguyễn Trọng Thân"
+                                        class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                                        src="Nguyễn_Trọng_Thân.png" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <h3 class="text-xl font-headline font-bold text-white">Nguyễn Trọng Thân</h3>
+                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">AI Chip
+                                    </p>
+                                </div>
+                            </button>
+
+                            <button type="button"
+                                class="expert-card expert-slide w-full group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
+                                data-expert="cong" aria-hidden="true">
+                                <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
+                                    <img alt="Expert Nguyễn Thành Công"
+                                        class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                                        src="Nguyễn_Thành_Công.png" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <h3 class="text-xl font-headline font-bold text-white">Nguyễn Thành Công</h3>
+                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Công nghệ
+                                        &amp; Dữ liệu</p>
+                                </div>
+                            </button>
+
+                            <button type="button"
+                                class="expert-card expert-slide w-full group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
+                                data-expert="quyet" aria-hidden="true">
+                                <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
+                                    <img alt="Expert Nguyễn Văn Quyết"
+                                        class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                                        src="Nguyễn_Văn_Quyết.png" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <h3 class="text-xl font-headline font-bold text-white">Nguyễn Văn Quyết</h3>
+                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Data
+                                        Center</p>
+                                </div>
+                            </button>
+
+                            <button type="button"
+                                class="expert-card expert-slide w-full group relative cursor-pointer shadow-lg shadow-slate-200/50 text-left rounded-2xl overflow-hidden"
+                                data-expert="sang" aria-hidden="true">
+                                <div class="aspect-[3/4] bg-slate-100 img-frame relative overflow-hidden">
+                                    <img alt="Expert Huỳnh Quang Sang"
+                                        class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                                        src="Huỳnh_Quang_Sang.jpg"
+                                        onerror="this.onerror=null; this.src='Hoangbin4.jpg';" />
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-6 left-6 right-6">
+                                    <h3 class="text-xl font-headline font-bold text-white">Huỳnh Quang Sang</h3>
+                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">R&amp;D
+                                    </p>
+                                </div>
+                            </button>
                         </div>
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <h3 class="text-xl font-headline font-bold text-white">Huỳnh Quang Sang</h3>
-                            <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">R&amp;D</p>
-                        </div>
+                    </div>
+
+                    <button type="button" id="expertNextBtn" class="expert-nav-btn expert-nav-btn-next"
+                        aria-label="Chuyên gia tiếp theo">
+                        <span class="material-symbols-outlined">chevron_right</span>
                     </button>
                 </div>
 
@@ -1799,7 +2073,6 @@
             }
         };
 
-        const expertCards = document.querySelectorAll('[data-expert]');
         const expertModal = document.getElementById('expertModal');
         const expertModalBackdrop = document.getElementById('expertModalBackdrop');
         const expertModalClose = document.getElementById('expertModalClose');
@@ -1807,6 +2080,11 @@
         const expertModalTitle = document.getElementById('expertModalTitle');
         const expertModalBio = document.getElementById('expertModalBio');
         const expertModalImage = document.getElementById('expertModalImage');
+
+        const expertCarouselTrack = document.getElementById('expertCarouselTrack');
+        const expertCarouselViewport = document.getElementById('expertCarouselViewport');
+        const expertPrevBtn = document.getElementById('expertPrevBtn');
+        const expertNextBtn = document.getElementById('expertNextBtn');
 
         function openExpertModal(key) {
             const expert = expertData[key];
@@ -1831,6 +2109,7 @@
             document.body.style.overflow = '';
         }
 
+        const expertCards = document.querySelectorAll('#expertCarouselTrack [data-expert]');
         expertCards.forEach(card => {
             card.addEventListener('click', () => {
                 openExpertModal(card.dataset.expert);
@@ -1844,6 +2123,128 @@
             if (e.key === 'Escape' && expertModal.classList.contains('show')) {
                 closeExpertModal();
             }
+        });
+
+        let expertAutoScroll = null;
+        let expertCurrentIndex = 0;
+
+        function getExpertStep() {
+            const firstCard = expertCarouselTrack.querySelector('.expert-slide');
+            if (!firstCard) return 0;
+
+            const cardWidth = firstCard.getBoundingClientRect().width;
+            const trackStyle = window.getComputedStyle(expertCarouselTrack);
+            const gap = parseFloat(trackStyle.columnGap || trackStyle.gap || 24);
+            return cardWidth + gap;
+        }
+
+        function updateExpertCenterState() {
+            const slides = expertCarouselTrack.querySelectorAll('.expert-slide');
+
+            slides.forEach(slide => {
+                slide.classList.remove('active-center', 'near-center');
+            });
+
+            let visibleCount = 5;
+
+            if (window.innerWidth <= 767) {
+                visibleCount = 2;
+            } else if (window.innerWidth <= 1279) {
+                visibleCount = 3;
+            }
+
+            const centerOffset = Math.floor(visibleCount / 2);
+            const centerIndex = expertCurrentIndex + centerOffset;
+
+            slides.forEach((slide, index) => {
+                if (index === centerIndex) {
+                    slide.classList.add('active-center');
+                } else if (index === centerIndex - 1 || index === centerIndex + 1) {
+                    slide.classList.add('near-center');
+                }
+            });
+        }
+
+        function moveExpertCarousel() {
+            const step = getExpertStep();
+            expertCarouselTrack.style.transition = 'transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+            expertCarouselTrack.style.transform = `translateX(-${expertCurrentIndex * step}px)`;
+            updateExpertCenterState();
+        }
+
+        function resetExpertCarouselIfNeeded() {
+            const totalOriginal = 5;
+
+            if (expertCurrentIndex >= totalOriginal) {
+                setTimeout(() => {
+                    expertCarouselTrack.style.transition = 'none';
+                    expertCurrentIndex = 0;
+                    expertCarouselTrack.style.transform = 'translateX(0)';
+                    updateExpertCenterState();
+                }, 560);
+            }
+
+            if (expertCurrentIndex < 0) {
+                expertCarouselTrack.style.transition = 'none';
+                expertCurrentIndex = totalOriginal - 1;
+                const step = getExpertStep();
+                expertCarouselTrack.style.transform = `translateX(-${expertCurrentIndex * step}px)`;
+                updateExpertCenterState();
+            }
+        }
+
+        function nextExpertSlide() {
+            expertCurrentIndex += 1;
+            moveExpertCarousel();
+            resetExpertCarouselIfNeeded();
+        }
+
+        function prevExpertSlide() {
+            expertCurrentIndex -= 1;
+            moveExpertCarousel();
+            resetExpertCarouselIfNeeded();
+        }
+
+        function startExpertAutoScroll() {
+            stopExpertAutoScroll();
+            expertAutoScroll = setInterval(() => {
+                nextExpertSlide();
+            }, 3400);
+        }
+
+        function stopExpertAutoScroll() {
+            if (expertAutoScroll) {
+                clearInterval(expertAutoScroll);
+                expertAutoScroll = null;
+            }
+        }
+
+        expertNextBtn.addEventListener('click', () => {
+            stopExpertAutoScroll();
+            nextExpertSlide();
+            startExpertAutoScroll();
+        });
+
+        expertPrevBtn.addEventListener('click', () => {
+            stopExpertAutoScroll();
+            prevExpertSlide();
+            startExpertAutoScroll();
+        });
+
+        expertCarouselViewport.addEventListener('mouseenter', stopExpertAutoScroll);
+        expertCarouselViewport.addEventListener('mouseleave', startExpertAutoScroll);
+
+        window.addEventListener('resize', () => {
+            const step = getExpertStep();
+            expertCarouselTrack.style.transition = 'none';
+            expertCarouselTrack.style.transform = `translateX(-${expertCurrentIndex * step}px)`;
+            updateExpertCenterState();
+        });
+
+        window.addEventListener('load', () => {
+            expertCarouselTrack.style.transform = 'translateX(0)';
+            updateExpertCenterState();
+            startExpertAutoScroll();
         });
     </script>
 </body>
