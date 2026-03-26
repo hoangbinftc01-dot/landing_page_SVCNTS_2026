@@ -8,8 +8,7 @@
 
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -26,7 +25,7 @@
                         "on-tertiary": "#3b2f00",
                         "on-primary": "#00363a",
                         "on-secondary-container": "#4b1b00",
-                        "primary-container": "#00f0ff",
+                        "primary-container": "#2780DA",
                         "surface-container": "#FFFFFF",
                         "on-primary-fixed-variant": "#004f54",
                         "on-tertiary-fixed": "#231b00",
@@ -37,12 +36,12 @@
                         "on-primary-fixed": "#002022",
                         "inverse-surface": "#0F172A",
                         "on-secondary-fixed-variant": "#7a3000",
-                        "primary-fixed-dim": "#00dbe9",
+                        "primary-fixed-dim": "#2780DA",
                         "background": "#F8FAFC",
                         "tertiary-container": "#fed639",
                         "inverse-primary": "#006970",
                         "secondary-fixed": "#ffdbcb",
-                        "surface-tint": "#00dbe9",
+                        "surface-tint": "#2780DA",
                         "surface-container-lowest": "#FFFFFF",
                         "on-error-container": "#93000a",
                         "on-background": "#0F172A",
@@ -60,7 +59,7 @@
                         "on-tertiary-fixed-variant": "#554500",
                         "surface": "#F8FAFC",
                         "secondary": "#EB6A1B",
-                        "primary": "#00D1E0",
+                        "primary": "#2780DA",
                         "outline-variant": "#CBD5E1",
                         "outline": "#64748B",
                         "tertiary-fixed-dim": "#eac324",
@@ -69,9 +68,9 @@
                         "secondary-container": "#EB6A1B"
                     },
                     fontFamily: {
-                        "headline": ["Space Grotesk"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
                     },
                     borderRadius: {
                         "DEFAULT": "0.125rem",
@@ -98,17 +97,22 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.78);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, 0.32);
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border: none;
         }
 
         .track-card {
             position: relative;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.96) 100%);
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 10px 30px rgba(148, 163, 184, 0.10);
+            background: linear-gradient(135deg,
+                    rgba(39, 128, 218, 0.14) 0%,
+                    rgba(255, 255, 255, 0.96) 42%,
+                    rgba(235, 106, 27, 0.12) 100%);
+            border: 1px solid rgba(39, 128, 218, 0.22);
+            box-shadow:
+                0 16px 36px rgba(15, 23, 42, 0.10),
+                0 8px 20px rgba(39, 128, 218, 0.10);
             transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
             isolation: isolate;
         }
@@ -119,10 +123,11 @@
             inset: 0;
             border-radius: inherit;
             background: linear-gradient(135deg,
-                    rgba(0, 209, 224, 0.10) 0%,
-                    rgba(14, 165, 233, 0.05) 45%,
-                    rgba(235, 106, 27, 0.08) 100%);
-            opacity: 0;
+                    rgba(255, 255, 255, 0.18) 0%,
+                    rgba(255, 255, 255, 0.05) 35%,
+                    rgba(39, 128, 218, 0.10) 70%,
+                    rgba(235, 106, 27, 0.10) 100%);
+            opacity: 0.75;
             transition: opacity 0.35s ease;
             z-index: 0;
         }
@@ -131,10 +136,10 @@
             content: "";
             position: absolute;
             inset: auto 0 0 0;
-            height: 4px;
-            background: linear-gradient(90deg, #00D1E0 0%, #0ea5e9 55%, #EB6A1B 100%);
-            opacity: 0.85;
-            transform: scaleX(0.22);
+            height: 5px;
+            background: linear-gradient(90deg, #2780DA 0%, #0ea5e9 52%, #EB6A1B 100%);
+            opacity: 0.95;
+            transform: scaleX(0.34);
             transform-origin: left center;
             transition: transform 0.35s ease;
             z-index: 1;
@@ -146,10 +151,15 @@
         }
 
         .track-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(0, 209, 224, 0.28);
-            box-shadow: 0 22px 50px rgba(15, 23, 42, 0.14);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(240, 249, 255, 0.96) 100%);
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(39, 128, 218, 0.40);
+            box-shadow:
+                0 28px 60px rgba(15, 23, 42, 0.16),
+                0 12px 28px rgba(39, 128, 218, 0.18);
+            background: linear-gradient(135deg,
+                    rgba(39, 128, 218, 0.20) 0%,
+                    rgba(255, 255, 255, 0.98) 40%,
+                    rgba(235, 106, 27, 0.16) 100%);
         }
 
         .track-card:hover::before {
@@ -162,14 +172,19 @@
 
         .track-card-icon {
             transition: transform 0.35s ease, background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
-            box-shadow: inset 0 0 0 1px rgba(0, 209, 224, 0.08);
+            box-shadow:
+                inset 0 0 0 1px rgba(39, 128, 218, 0.14),
+                0 8px 18px rgba(39, 128, 218, 0.10);
+            background: rgba(255, 255, 255, 0.52);
         }
 
         .track-card:hover .track-card-icon {
-            transform: scale(1.12) rotate(-4deg);
-            background: linear-gradient(135deg, rgba(0, 209, 224, 0.16) 0%, rgba(14, 165, 233, 0.12) 100%);
+            transform: scale(1.14) rotate(-4deg);
+            background: linear-gradient(135deg,
+                    rgba(39, 128, 218, 0.24) 0%,
+                    rgba(14, 165, 233, 0.18) 100%);
             color: #0284c7;
-            box-shadow: 0 10px 24px rgba(0, 209, 224, 0.12);
+            box-shadow: 0 14px 28px rgba(39, 128, 218, 0.22);
         }
 
         .track-card-title {
@@ -177,7 +192,7 @@
         }
 
         .track-card:hover .track-card-title {
-            color: #0369a1;
+            color: #0f172a;
             transform: translateX(2px);
         }
 
@@ -186,17 +201,17 @@
         }
 
         .track-card:hover .track-card-desc {
-            color: #475569;
+            color: #334155;
         }
 
         .track-card-ghost-icon {
-            opacity: 0.06;
+            opacity: 0.08;
             transform: scale(1);
             transition: opacity 0.35s ease, transform 0.35s ease;
         }
 
         .track-card:hover .track-card-ghost-icon {
-            opacity: 0.12;
+            opacity: 0.14;
             transform: scale(1.08);
         }
 
@@ -218,11 +233,26 @@
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #00f0ff;
+            background: #2780DA;
         }
 
         section[id] {
-            scroll-margin-top: 88px;
+            scroll-margin-top: 96px;
+        }
+
+        /* chỉnh riêng cho Quyền lợi */
+        #benefits-page {
+            scroll-margin-top: 50px;
+        }
+
+        /* Đối tượng */
+        #requirements-page {
+            scroll-margin-top: 30px;
+        }
+
+        /* Quy trình tuyển chọn */
+        #process {
+            scroll-margin-top: 30px;
         }
 
         .img-frame {
@@ -271,11 +301,13 @@
         .benefit-card {
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(226, 232, 240, 0.95);
-            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+            box-shadow:
+                0 18px 42px rgba(17, 37, 89, 0.16),
+                0 6px 18px rgba(39, 128, 218, 0.10);
             transition: transform 0.38s ease, box-shadow 0.38s ease, border-color 0.38s ease, background 0.38s ease;
             isolation: isolate;
         }
@@ -302,9 +334,9 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(135deg,
-                    rgba(0, 209, 224, 0.07) 0%,
-                    rgba(255, 255, 255, 0) 45%,
-                    rgba(235, 106, 27, 0.07) 100%);
+                    rgba(39, 128, 218, 0.08) 0%,
+                    rgba(255, 255, 255, 0) 52%,
+                    rgba(221, 103, 161, 0.08) 100%);
             opacity: 0;
             transition: opacity 0.35s ease;
             z-index: 0;
@@ -317,10 +349,12 @@
         }
 
         .benefit-card:hover {
-            transform: translateY(-12px) rotate(-0.6deg);
-            border-color: rgba(0, 209, 224, 0.3);
-            background: rgba(255, 255, 255, 0.96);
-            box-shadow: 0 26px 56px rgba(15, 23, 42, 0.13);
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow:
+                0 24px 48px rgba(17, 37, 89, 0.20),
+                0 8px 20px rgba(39, 128, 218, 0.12);
         }
 
         .benefit-card:hover::before {
@@ -381,7 +415,7 @@
             top: 0;
             width: 0;
             height: 100%;
-            background: linear-gradient(180deg, #00D1E0 0%, #0ea5e9 100%);
+            background: linear-gradient(180deg, #2780DA 0%, #0ea5e9 100%);
             transition: width 0.3s ease;
             border-top-left-radius: 1rem;
             border-bottom-left-radius: 1rem;
@@ -410,7 +444,7 @@
         }
 
         .process-item.active {
-            border-color: rgba(0, 209, 224, 0.45);
+            border-color: rgba(39, 128, 218, 0.45);
             box-shadow: 0 12px 30px rgba(148, 163, 184, 0.2);
         }
 
@@ -419,7 +453,7 @@
         }
 
         .process-item.active .step-number {
-            color: #00D1E0 !important;
+            color: #2780DA !important;
         }
 
         .process-item.active .step-title {
@@ -534,6 +568,51 @@
 
         .expert-nav-btn-next {
             right: 0;
+        }
+
+        :root {
+            --font-ui: "Inter", sans-serif;
+        }
+
+        body,
+        input,
+        select,
+        textarea,
+        button {
+            font-family: var(--font-ui);
+        }
+
+        .section-title {
+            font-family: var(--font-ui);
+            font-weight: 800;
+            font-size: clamp(2rem, 3vw, 3rem);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-ui);
+            font-weight: 700;
+            font-size: clamp(1.25rem, 2vw, 1.5rem);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+        }
+
+        .card-title {
+            font-family: var(--font-ui);
+            font-weight: 700;
+            font-size: 1.25rem;
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+        }
+
+        .label-text {
+            font-family: var(--font-ui);
+            font-weight: 700;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
         }
 
         @media (max-width: 1279px) {
@@ -819,7 +898,7 @@
         /* Mobile */
         @media (max-width: 767px) {
             section[id] {
-                scroll-margin-top: 76px;
+                scroll-margin-top: 88px;
             }
 
             #heroBanner {
@@ -931,7 +1010,7 @@
                 <img src="logo.png" alt="logoFPT" class="w-auto h-8 sm:h-10 cursor-pointer">
             </a>
 
-            <div class="hidden md:flex gap-8 font-['Space_Grotesk'] tracking-tight text-sm uppercase">
+            <div class="hidden md:flex gap-8 font-body tracking-tight text-sm uppercase">
                 <a class="top-nav-link text-slate-600 hover:text-[#EB6A1B] font-medium transition-colors duration-300"
                     href="#tracks">Nhóm ngành</a>
                 <a class="top-nav-link text-slate-600 hover:text-[#EB6A1B] font-medium transition-colors duration-300"
@@ -1025,8 +1104,7 @@
             <div class="max-w-screen-2xl mx-auto">
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 lg:mb-16 gap-4">
                     <div class="space-y-4">
-                        <h2 class="text-[#00D1E0] font-headline font-bold text-3xl sm:text-4xl tracking-tighter">NHÓM
-                            NGÀNH</h2>
+                        <h2 class="section-title text-[#2780DA]">NHÓM NGÀNH</h2>
                         <div class="h-1 w-24 bg-secondary-container"></div>
                     </div>
                     <p class="text-slate-500 text-base sm:text-lg max-w-md font-body">
@@ -1042,10 +1120,10 @@
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#2780DA] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">settings_input_antenna</span>
                             </div>
-                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">Viễn
+                            <h3 class="track-card-title card-title text-slate-900">Viễn
                                 thông</h3>
                             <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Vận hành hạ tầng viễn thông toàn quốc, nghiên cứu các chuẩn truyền dẫn mới nhất.
@@ -1059,10 +1137,10 @@
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#2780DA] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">terminal</span>
                             </div>
-                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">Công
+                            <h3 class="track-card-title card-title text-slate-900">Công
                                 nghệ thông tin</h3>
                             <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Phát triển nền tảng ứng dụng, hệ thống billing, CRM và các giải pháp chuyển đổi số.
@@ -1076,10 +1154,10 @@
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#2780DA] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">neurology</span>
                             </div>
-                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">Dữ
+                            <h3 class="track-card-title card-title text-slate-900">Dữ
                                 liệu &amp; Trí tuệ nhân tạo</h3>
                             <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Xây dựng Data Warehouse, phát triển mô hình AI và các hệ thống phân tích dữ liệu lớn.
@@ -1094,10 +1172,10 @@
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#2780DA] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">precision_manufacturing</span>
                             </div>
-                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">Điện
+                            <h3 class="track-card-title card-title text-slate-900">Điện
                                 - Cơ điện tự động hóa</h3>
                             <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Vận hành hạ tầng Data Center, điện thông minh và hệ thống giám sát tự động.
@@ -1111,10 +1189,10 @@
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#2780DA] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">security</span>
                             </div>
-                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">An
+                            <h3 class="track-card-title card-title text-slate-900">An
                                 toàn thông tin</h3>
                             <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Phòng thủ, phản ứng sự cố, pentest và bảo mật cloud toàn diện.
@@ -1128,10 +1206,10 @@
                         </div>
                         <div class="space-y-4">
                             <div
-                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#00D1E0] mb-4 sm:mb-6">
+                                class="track-card-icon w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-[#2780DA] mb-4 sm:mb-6">
                                 <span class="material-symbols-outlined">memory</span>
                             </div>
-                            <h3 class="track-card-title text-xl sm:text-2xl font-headline font-bold text-slate-900">
+                            <h3 class="track-card-title card-title text-slate-900">
                                 Thiết kế vi mạch (IC) &amp; Phần cứng</h3>
                             <p class="track-card-desc text-slate-600 text-sm leading-relaxed">
                                 Thiết kế vi mạch, tối ưu phần cứng cho các hệ thống thiết bị và IoT.
@@ -1142,61 +1220,69 @@
             </div>
         </section>
 
-        <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden"
-            id="benefits-page">
+        <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 
+    bg-[linear-gradient(135deg,#24489C_0%,#2780DA_62%,#DDEBFF_100%)] 
+    relative overflow-hidden" id="benefits-page">
             <div class="absolute inset-0 z-0 pointer-events-none">
                 <div class="benefits-parallax-media" data-parallax>
-                    <img src="visual2.png" alt="Background visual" class="w-full h-full opacity-[0.08]" />
-                    <div class="absolute inset-0 bg-gradient-to-b from-white/85 via-white/72 to-white/92"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-50/25 via-transparent to-orange-50/20">
+                    <img src="visual2.png" alt="Background visual" class="w-full h-full opacity-[0.07]" />
+
+                    <div
+                        class="absolute inset-0 
+            bg-[linear-gradient(135deg,rgba(36,72,156,0.15)_0%,rgba(39,128,218,0.1)_62%,rgba(221,103,161,0.03)_100%)]">
                     </div>
+
+                    <div class="absolute inset-0 
+            bg-[radial-gradient(circle_at_78%_20%,rgba(221,103,161,0.18),transparent_24%),
+                radial-gradient(circle_at_16%_18%,rgba(255,255,255,0.18),transparent_22%),
+                radial-gradient(circle_at_22%_82%,rgba(39,128,218,0.16),transparent_26%)]">
+                    </div>
+
+                    <div class="absolute inset-0 bg-white/5"></div>
                 </div>
             </div>
 
             <div class="max-w-screen-2xl mx-auto w-full relative z-10">
                 <div class="max-w-3xl mb-10 sm:mb-12 lg:mb-16">
-                    <h2
-                        class="text-[#00D1E0] font-headline font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tighter mb-4">
-                        QUYỀN LỢI</h2>
+                    <h2 class="section-title text-white mb-4">
+                        QUYỀN LỢI
+                    </h2>
                     <div class="h-1 w-28 bg-secondary-container mb-6"></div>
-                    <p class="text-slate-500 text-base sm:text-lg leading-relaxed">
+                    <p
+                        class="text-white/95 text-base sm:text-lg leading-relaxed [text-shadow:0_2px_10px_rgba(17,37,89,0.28)]">
                         Những giá trị bạn nhận được không chỉ là một kỳ thực tập, mà là một hành trình tăng tốc sự
                         nghiệp trong môi trường công nghệ thực chiến.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-                    <div
-                        class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
+                    <div class="benefit-card p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
-                            <div class="benefit-icon text-secondary-container shrink-0 mt-1">
+                            <div class="benefit-icon text-[#EB6A1B] shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">payments</span>
                             </div>
                             <div>
-                                <h4
-                                    class="benefit-title text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">
+                                <h4 class="benefit-title card-title text-[#112559] mb-3">
                                     Thu nhập
                                     đột phá</h4>
-                                <p class="benefit-desc text-slate-600 leading-relaxed text-sm sm:text-base">
-                                    Bỏ túi lên đến <span class="font-bold text-slate-900">150 triệu VNĐ</span> khi vẫn
+                                <p class="benefit-desc text-slate-700 leading-relaxed text-sm sm:text-base">
+                                    Bỏ túi lên đến <span class="font-bold text-[#2780DA]">150 triệu VNĐ</span> khi vẫn
                                     là sinh viên.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div
-                        class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
+                    <div class="benefit-card p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
-                            <div class="benefit-icon text-secondary-container shrink-0 mt-1">
+                            <div class="benefit-icon text-[#EB6A1B] shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">science</span>
                             </div>
                             <div>
-                                <h4
-                                    class="benefit-title text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">
+                                <h4 class="benefit-title card-title text-[#112559] mb-3">
                                     Thực chiến
                                     R&amp;D</h4>
-                                <p class="benefit-desc text-slate-600 leading-relaxed text-sm sm:text-base">
+                                <p class="benefit-desc text-slate-700 leading-relaxed text-sm sm:text-base">
                                     Được phát triển trong môi trường R&amp;D thực tế, tool bản quyền, hạ tầng tiên tiến
                                     và nền tảng AI hiện đại.
                                 </p>
@@ -1204,18 +1290,16 @@
                         </div>
                     </div>
 
-                    <div
-                        class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
+                    <div class="benefit-card p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
-                            <div class="benefit-icon text-secondary-container shrink-0 mt-1">
+                            <div class="benefit-icon text-[#EB6A1B] shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">psychology</span>
                             </div>
                             <div>
-                                <h4
-                                    class="benefit-title text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">
+                                <h4 class="benefit-title card-title text-[#112559] mb-3">
                                     Đặc quyền
                                     Mentorship 1:1</h4>
-                                <p class="benefit-desc text-slate-600 leading-relaxed text-sm sm:text-base">
+                                <p class="benefit-desc text-slate-700 leading-relaxed text-sm sm:text-base">
                                     Được bảo trợ chuyên môn, đối thoại trực tiếp và kèm cặp 1:1 bởi các Chuyên gia
                                     Công nghệ hàng đầu.
                                 </p>
@@ -1223,38 +1307,34 @@
                         </div>
                     </div>
 
-                    <div
-                        class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl">
+                    <div class="benefit-card p-6 sm:p-8 rounded-2xl">
                         <div class="flex items-start gap-4">
-                            <div class="benefit-icon text-secondary-container shrink-0 mt-1">
+                            <div class="benefit-icon text-[#EB6A1B] shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">workspace_premium</span>
                             </div>
                             <div>
-                                <h4
-                                    class="benefit-title text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">
+                                <h4 class="benefit-title card-title text-[#112559] mb-3">
                                     Bứt tốc
                                     sự nghiệp</h4>
-                                <p class="benefit-desc text-slate-600 leading-relaxed text-sm sm:text-base">
-                                    Nhận ngay khóa đào tạo công nghệ chuyên sâu. Được tài trợ <span
-                                        class="font-bold text-slate-900">100% chi phí học &amp; thi</span>
+                                <p class="benefit-desc text-slate-700 leading-relaxed text-sm sm:text-base">
+                                    Nhận ngay khóa đào tạo công nghệ chuyên sâu. Được tài trợ
+                                    <span class="font-bold text-[#2780DA]">100% chi phí học &amp; thi</span>
                                     các chứng chỉ quốc tế như CCIE, CISSP,...
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div
-                        class="benefit-card bg-white/85 backdrop-blur-sm border border-slate-100 p-6 sm:p-8 rounded-2xl lg:col-span-2">
+                    <div class="benefit-card p-6 sm:p-8 rounded-2xl lg:col-span-2">
                         <div class="flex items-start gap-4">
-                            <div class="benefit-icon text-secondary-container shrink-0 mt-1">
+                            <div class="benefit-icon text-[#EB6A1B] shrink-0 mt-1">
                                 <span class="material-symbols-outlined font-bold">rocket_launch</span>
                             </div>
                             <div>
-                                <h4
-                                    class="benefit-title text-xl sm:text-2xl font-headline font-bold text-slate-900 mb-3">
+                                <h4 class="benefit-title card-title text-[#112559] mb-3">
                                     Lộ trình
                                     Fast-track</h4>
-                                <p class="benefit-desc text-slate-600 leading-relaxed text-sm sm:text-base">
+                                <p class="benefit-desc text-slate-700 leading-relaxed text-sm sm:text-base">
                                     Trở thành nhân viên chính thức và phát triển thành đội ngũ cán bộ công nghệ nòng
                                     cốt.
                                 </p>
@@ -1265,11 +1345,12 @@
             </div>
         </section>
 
-        <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50" id="requirements-page">
+        <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 
+    bg-gradient-to-br from-cyan-50 via-white to-orange-50 
+    relative overflow-hidden" id="requirements-page">
             <div class="max-w-screen-2xl mx-auto">
                 <div class="mb-10 sm:mb-12 lg:mb-16 max-w-3xl">
-                    <h2
-                        class="text-[#00D1E0] font-headline font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tighter">
+                    <h2 class="section-title text-[#2780DA]">
                         ĐỐI TƯỢNG
                     </h2>
                     <div class="h-1 w-28 bg-secondary-container mt-4 mb-6"></div>
@@ -1281,13 +1362,13 @@
 
                 <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 items-stretch">
                     <div class="bg-white p-6 sm:p-8 border border-slate-100 shadow-xl flex flex-col rounded-2xl">
-                        <h3 class="text-xl sm:text-2xl font-headline font-bold mb-6 sm:mb-8 uppercase">
+                        <h3 class="section-subtitle mb-6 sm:mb-8 uppercase">
                             Tiêu chí chính
                         </h3>
 
                         <ul class="space-y-5 sm:space-y-6 flex-1">
                             <li class="flex gap-4">
-                                <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2 shrink-0"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#2780DA] mt-2 shrink-0"></div>
                                 <div>
                                     <h4 class="font-bold text-base sm:text-lg">Sinh viên năm 3 hoặc năm cuối</h4>
                                     <p class="text-sm text-slate-600 mt-1">
@@ -1297,7 +1378,7 @@
                             </li>
 
                             <li class="flex gap-4">
-                                <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2 shrink-0"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#2780DA] mt-2 shrink-0"></div>
                                 <div>
                                     <h4 class="font-bold text-base sm:text-lg">Địa điểm làm việc</h4>
                                     <p class="text-sm text-slate-600 mt-1">
@@ -1307,7 +1388,7 @@
                             </li>
 
                             <li class="flex gap-4">
-                                <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2 shrink-0"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#2780DA] mt-2 shrink-0"></div>
                                 <div>
                                     <h4 class="font-bold text-base sm:text-lg">Yêu cầu học lực</h4>
                                     <p class="text-sm text-slate-600 mt-1">
@@ -1317,7 +1398,7 @@
                             </li>
 
                             <li class="flex gap-4">
-                                <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2 shrink-0"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#2780DA] mt-2 shrink-0"></div>
                                 <div>
                                     <h4 class="font-bold text-base sm:text-lg">Định hướng phát triển</h4>
                                     <p class="text-sm text-slate-600 mt-1">
@@ -1327,7 +1408,7 @@
                             </li>
 
                             <li class="flex gap-4">
-                                <div class="w-3 h-3 rounded-full bg-[#00D1E0] mt-2 shrink-0"></div>
+                                <div class="w-3 h-3 rounded-full bg-[#2780DA] mt-2 shrink-0"></div>
                                 <div>
                                     <h4 class="font-bold text-base sm:text-lg">Điểm cộng</h4>
                                     <p class="text-sm text-slate-600 mt-1">
@@ -1340,10 +1421,10 @@
 
                     <div class="bg-white p-6 sm:p-8 border border-slate-100 shadow-xl flex flex-col rounded-2xl">
                         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6 sm:mb-8">
-                            <h3 class="text-xl sm:text-2xl font-headline font-bold uppercase">
+                            <h3 class="section-subtitle uppercase">
                                 Chứng chỉ ưu tiên
                             </h3>
-                            <span class="text-xs font-bold tracking-widest text-[#00D1E0]">
+                            <span class="text-xs font-bold tracking-widest text-[#2780DA]">
                                 THEO NHÓM
                             </span>
                         </div>
@@ -1399,8 +1480,7 @@
         <section class="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white">
             <div class="max-w-screen-2xl mx-auto space-y-12 sm:space-y-16">
                 <div class="text-center space-y-4">
-                    <h2 class="text-slate-900 font-headline font-bold text-3xl sm:text-4xl tracking-tighter">ĐỘI NGŨ
-                        DẪN DẮT</h2>
+                    <h2 class="section-title text-slate-900">ĐỘI NGŨ DẪN DẮT</h2>
                     <p class="text-slate-500 text-sm sm:text-base">Gặp gỡ những "kiến trúc sư" công nghệ tại FPT
                         Telecom</p>
                 </div>
@@ -1427,7 +1507,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6 right-6">
                                     <h3 class="text-xl font-headline font-bold text-white">Lê Trung</h3>
-                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Hạ tầng
+                                    <p class="text-[#2780DA] text-xs font-bold uppercase tracking-widest mt-1">Hạ tầng
                                         Viễn thông</p>
                                 </div>
                             </button>
@@ -1445,7 +1525,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6 right-6">
                                     <h3 class="text-xl font-headline font-bold text-white">Nguyễn Trọng Thân</h3>
-                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">AI Chip
+                                    <p class="text-[#2780DA] text-xs font-bold uppercase tracking-widest mt-1">AI Chip
                                     </p>
                                 </div>
                             </button>
@@ -1463,7 +1543,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6 right-6">
                                     <h3 class="text-xl font-headline font-bold text-white">Nguyễn Thành Công</h3>
-                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Công nghệ
+                                    <p class="text-[#2780DA] text-xs font-bold uppercase tracking-widest mt-1">Công nghệ
                                         &amp; Dữ liệu</p>
                                 </div>
                             </button>
@@ -1481,7 +1561,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6 right-6">
                                     <h3 class="text-xl font-headline font-bold text-white">Nguyễn Văn Quyết</h3>
-                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Data
+                                    <p class="text-[#2780DA] text-xs font-bold uppercase tracking-widest mt-1">Data
                                         Center</p>
                                 </div>
                             </button>
@@ -1500,7 +1580,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6 right-6">
                                     <h3 class="text-xl font-headline font-bold text-white">Huỳnh Quang Sang</h3>
-                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">R&amp;D
+                                    <p class="text-[#2780DA] text-xs font-bold uppercase tracking-widest mt-1">R&amp;D
                                     </p>
                                 </div>
                             </button>
@@ -1519,7 +1599,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6 right-6">
                                     <h3 class="text-xl font-headline font-bold text-white">Lê Trung</h3>
-                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Hạ tầng
+                                    <p class="text-[#2780DA] text-xs font-bold uppercase tracking-widest mt-1">Hạ tầng
                                         Viễn thông</p>
                                 </div>
                             </button>
@@ -1537,7 +1617,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6 right-6">
                                     <h3 class="text-xl font-headline font-bold text-white">Nguyễn Trọng Thân</h3>
-                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">AI Chip
+                                    <p class="text-[#2780DA] text-xs font-bold uppercase tracking-widest mt-1">AI Chip
                                     </p>
                                 </div>
                             </button>
@@ -1555,7 +1635,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6 right-6">
                                     <h3 class="text-xl font-headline font-bold text-white">Nguyễn Thành Công</h3>
-                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Công nghệ
+                                    <p class="text-[#2780DA] text-xs font-bold uppercase tracking-widest mt-1">Công nghệ
                                         &amp; Dữ liệu</p>
                                 </div>
                             </button>
@@ -1573,7 +1653,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6 right-6">
                                     <h3 class="text-xl font-headline font-bold text-white">Nguyễn Văn Quyết</h3>
-                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">Data
+                                    <p class="text-[#2780DA] text-xs font-bold uppercase tracking-widest mt-1">Data
                                         Center</p>
                                 </div>
                             </button>
@@ -1592,7 +1672,7 @@
                                 </div>
                                 <div class="absolute bottom-6 left-6 right-6">
                                     <h3 class="text-xl font-headline font-bold text-white">Huỳnh Quang Sang</h3>
-                                    <p class="text-[#00D1E0] text-xs font-bold uppercase tracking-widest mt-1">R&amp;D
+                                    <p class="text-[#2780DA] text-xs font-bold uppercase tracking-widest mt-1">R&amp;D
                                     </p>
                                 </div>
                             </button>
@@ -1606,8 +1686,7 @@
                 </div>
 
                 <div class="pt-6 sm:pt-10 lg:pt-20">
-                    <h3
-                        class="text-slate-900 font-headline font-bold text-xl sm:text-2xl tracking-tighter mb-6 sm:mb-8 flex items-center gap-4">
+                    <h3 class="section-subtitle text-slate-900 mb-6 sm:mb-8 flex items-center gap-4">
                         <span class="w-12 h-[1px] bg-slate-300"></span>
                         CỰU SINH VIÊN CÔNG NGHỆ TẬP SỰ
                     </h3>
@@ -1618,7 +1697,7 @@
                                 <img src="Nguyễn_Ngọc_Phú.jpg" alt="Nguyễn Ngọc Phú" class="alumni-image">
                                 <div class="alumni-overlay">
                                     <div class="alumni-overlay-content text-white">
-                                        <div class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
+                                        <div class="text-sm uppercase tracking-[0.2em] text-[#2780DA] font-bold mb-3">
                                             Chi tiết</div>
                                         <h4 class="font-headline font-bold text-xl mb-2">Nguyễn Ngọc Phú</h4>
                                         <p class="text-sm leading-relaxed text-slate-100">
@@ -1632,7 +1711,7 @@
                             </div>
                             <div class="p-6">
                                 <div class="text-slate-900 font-bold text-lg">Nguyễn Ngọc Phú</div>
-                                <div class="text-[11px] text-[#00D1E0] font-bold uppercase tracking-widest mt-2">
+                                <div class="text-[11px] text-[#2780DA] font-bold uppercase tracking-widest mt-2">
                                     Full-stack Developer</div>
                             </div>
                         </div>
@@ -1642,7 +1721,7 @@
                                 <img src="Lê_Thị_Hồng_Ngọc.png" alt="Lê Thị Hồng Ngọt" class="alumni-image">
                                 <div class="alumni-overlay">
                                     <div class="alumni-overlay-content text-white">
-                                        <div class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
+                                        <div class="text-sm uppercase tracking-[0.2em] text-[#2780DA] font-bold mb-3">
                                             Chi tiết</div>
                                         <h4 class="font-headline font-bold text-xl mb-2">Lê Thị Hồng Ngọt</h4>
                                         <p class="text-sm leading-relaxed text-slate-100">
@@ -1656,7 +1735,7 @@
                             </div>
                             <div class="p-6">
                                 <div class="text-slate-900 font-bold text-lg">Lê Thị Hồng Ngọt</div>
-                                <div class="text-[11px] text-[#00D1E0] font-bold uppercase tracking-widest mt-2">Kỹ sư
+                                <div class="text-[11px] text-[#2780DA] font-bold uppercase tracking-widest mt-2">Kỹ sư
                                     lập trình</div>
                             </div>
                         </div>
@@ -1666,7 +1745,7 @@
                                 <img src="Phan_thị_thương_bình.PNG" alt="Phan Thị Hương Bình" class="alumni-image">
                                 <div class="alumni-overlay">
                                     <div class="alumni-overlay-content text-white">
-                                        <div class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
+                                        <div class="text-sm uppercase tracking-[0.2em] text-[#2780DA] font-bold mb-3">
                                             Chi tiết</div>
                                         <h4 class="font-headline font-bold text-xl mb-2">Phan Thị Hương Bình</h4>
                                         <p class="text-sm leading-relaxed text-slate-100">
@@ -1681,7 +1760,7 @@
                             </div>
                             <div class="p-6">
                                 <div class="text-slate-900 font-bold text-lg">Phan Thị Hương Bình</div>
-                                <div class="text-[11px] text-[#00D1E0] font-bold uppercase tracking-widest mt-2">
+                                <div class="text-[11px] text-[#2780DA] font-bold uppercase tracking-widest mt-2">
                                     Chuyên viên tài chính</div>
                             </div>
                         </div>
@@ -1691,7 +1770,7 @@
                                 <img src="Nguyễn_Văn_Quang_Hưng.png" alt="Nguyễn Văn Quang Hưng" class="alumni-image">
                                 <div class="alumni-overlay">
                                     <div class="alumni-overlay-content text-white">
-                                        <div class="text-sm uppercase tracking-[0.2em] text-[#00D1E0] font-bold mb-3">
+                                        <div class="text-sm uppercase tracking-[0.2em] text-[#2780DA] font-bold mb-3">
                                             Chi tiết</div>
                                         <h4 class="font-headline font-bold text-xl mb-2">Nguyễn Văn Quang Hưng</h4>
                                         <p class="text-sm leading-relaxed text-slate-100">
@@ -1706,7 +1785,7 @@
                             </div>
                             <div class="p-6">
                                 <div class="text-slate-900 font-bold text-lg">Nguyễn Văn Quang Hưng</div>
-                                <div class="text-[11px] text-[#00D1E0] font-bold uppercase tracking-widest mt-2">
+                                <div class="text-[11px] text-[#2780DA] font-bold uppercase tracking-widest mt-2">
                                     Chuyên viên AI</div>
                             </div>
                         </div>
@@ -1715,17 +1794,22 @@
             </div>
         </section>
 
-        <section class="pt-2 pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden"
+        <section
+            class="pt-16 pb-16 sm:pt-20 sm:pb-20 lg:pt-24 lg:pb-24 px-4 sm:px-6 lg:px-8 bg-slate-50 relative overflow-hidden"
             id="process">
-            <div class="max-w-4xl mx-auto space-y-12 sm:space-y-16 relative z-10">
-                <div class="text-center space-y-4">
-                    <h2 class="text-[#00D1E0] font-headline font-bold text-3xl sm:text-4xl tracking-tighter">QUY TRÌNH
-                        TUYỂN CHỌN</h2>
-                    <p class="text-slate-500 text-sm sm:text-base">Các mốc thời gian quan trọng bạn cần nắm vững</p>
+            <div class="max-w-4xl mx-auto space-y-10 sm:space-y-12 lg:space-y-14 relative z-10">
+                <div class="text-center space-y-5 sm:space-y-6 mb-2 sm:mb-4">
+                    <h2 class="section-title text-[#2780DA] leading-[1.15]">
+                        QUY TRÌNH TUYỂN CHỌN
+                    </h2>
+                    <p class="text-slate-500 text-sm sm:text-base leading-relaxed">
+                        Các mốc thời gian quan trọng bạn cần nắm vững
+                    </p>
                 </div>
 
                 <div class="space-y-4">
-                    <div class="process-item active group bg-white p-5 sm:p-6 cursor-pointer shadow-sm rounded-2xl">
+                    <div
+                        class="process-item active group bg-white px-5 py-6 sm:px-6 sm:py-7 cursor-pointer shadow-sm rounded-2xl">
                         <div class="process-active-bar rounded-l-2xl"></div>
                         <div class="flex items-start sm:items-center justify-between gap-4 process-toggle">
                             <div class="flex items-start sm:items-center gap-4 sm:gap-6">
@@ -1736,7 +1820,7 @@
                                     Đăng ký ứng tuyển</h3>
                             </div>
                             <span
-                                class="process-icon material-symbols-outlined text-[#00D1E0] shrink-0">expand_more</span>
+                                class="process-icon material-symbols-outlined text-[#2780DA] shrink-0">expand_more</span>
                         </div>
                         <div class="process-content text-slate-600 text-sm max-w-2xl sm:pl-16">
                             Ứng viên hoàn tất biểu mẫu trực tuyến, đính kèm CV và sản phẩm cá nhân nếu có. Hệ thống sẽ
@@ -1744,7 +1828,8 @@
                         </div>
                     </div>
 
-                    <div class="process-item group bg-white p-5 sm:p-6 cursor-pointer shadow-sm rounded-2xl">
+                    <div
+                        class="process-item group bg-white px-5 py-6 sm:px-6 sm:py-7 cursor-pointer shadow-sm rounded-2xl">
                         <div class="process-active-bar rounded-l-2xl"></div>
                         <div class="flex items-start sm:items-center justify-between gap-4 process-toggle">
                             <div class="flex items-start sm:items-center gap-4 sm:gap-6">
@@ -1755,7 +1840,7 @@
                                     Sàng lọc hồ sơ</h3>
                             </div>
                             <span
-                                class="process-icon material-symbols-outlined text-[#00D1E0] shrink-0">expand_more</span>
+                                class="process-icon material-symbols-outlined text-[#2780DA] shrink-0">expand_more</span>
                         </div>
                         <div class="process-content text-slate-600 text-sm max-w-2xl sm:pl-16">
                             Phòng nhân sự và mentor chuyên môn sẽ đánh giá hồ sơ dựa trên GPA, dự án thực tế, hoạt
@@ -1763,7 +1848,8 @@
                         </div>
                     </div>
 
-                    <div class="process-item group bg-white p-5 sm:p-6 cursor-pointer shadow-sm rounded-2xl">
+                    <div
+                        class="process-item group bg-white px-5 py-6 sm:px-6 sm:py-7 cursor-pointer shadow-sm rounded-2xl">
                         <div class="process-active-bar rounded-l-2xl"></div>
                         <div class="flex items-start sm:items-center justify-between gap-4 process-toggle">
                             <div class="flex items-start sm:items-center gap-4 sm:gap-6">
@@ -1774,7 +1860,7 @@
                                     Bài Test năng lực (Technical &amp; IQ)</h3>
                             </div>
                             <span
-                                class="process-icon material-symbols-outlined text-[#00D1E0] shrink-0">expand_more</span>
+                                class="process-icon material-symbols-outlined text-[#2780DA] shrink-0">expand_more</span>
                         </div>
                         <div class="process-content text-slate-600 text-sm max-w-2xl sm:pl-16">
                             Bài test gồm phần logic, kiến thức nền và tình huống xử lý thực tế. Ứng viên có 45 phút
@@ -1782,7 +1868,8 @@
                         </div>
                     </div>
 
-                    <div class="process-item group bg-white p-5 sm:p-6 cursor-pointer shadow-sm rounded-2xl">
+                    <div
+                        class="process-item group bg-white px-5 py-6 sm:px-6 sm:py-7 cursor-pointer shadow-sm rounded-2xl">
                         <div class="process-active-bar rounded-l-2xl"></div>
                         <div class="flex items-start sm:items-center justify-between gap-4 process-toggle">
                             <div class="flex items-start sm:items-center gap-4 sm:gap-6">
@@ -1793,7 +1880,7 @@
                                     Phỏng vấn cùng chuyên gia</h3>
                             </div>
                             <span
-                                class="process-icon material-symbols-outlined text-[#00D1E0] shrink-0">expand_more</span>
+                                class="process-icon material-symbols-outlined text-[#2780DA] shrink-0">expand_more</span>
                         </div>
                         <div class="process-content text-slate-600 text-sm max-w-2xl sm:pl-16">
                             Vòng này tập trung đánh giá tư duy giải quyết vấn đề, khả năng tự học, giao tiếp chuyên
@@ -1801,7 +1888,8 @@
                         </div>
                     </div>
 
-                    <div class="process-item group bg-white p-5 sm:p-6 cursor-pointer shadow-sm rounded-2xl">
+                    <div
+                        class="process-item group bg-white px-5 py-6 sm:px-6 sm:py-7 cursor-pointer shadow-sm rounded-2xl">
                         <div class="process-active-bar rounded-l-2xl"></div>
                         <div class="flex items-start sm:items-center justify-between gap-4 process-toggle">
                             <div class="flex items-start sm:items-center gap-4 sm:gap-6">
@@ -1812,7 +1900,7 @@
                                     Onboarding &amp; Training</h3>
                             </div>
                             <span
-                                class="process-icon material-symbols-outlined text-[#00D1E0] shrink-0">expand_more</span>
+                                class="process-icon material-symbols-outlined text-[#2780DA] shrink-0">expand_more</span>
                         </div>
                         <div class="process-content text-slate-600 text-sm max-w-2xl sm:pl-16">
                             Sau khi trúng tuyển, ứng viên tham gia tuần định hướng, được ghép mentor 1:1 và bắt đầu
@@ -1828,7 +1916,7 @@
                 <div
                     class="bg-white p-5 sm:p-8 md:p-12 relative overflow-hidden border border-slate-100 shadow-2xl shadow-slate-200/60 rounded-2xl sm:rounded-3xl">
                     <div
-                        class="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 border-t-2 border-r-2 border-[#00D1E0]/10">
+                        class="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 border-t-2 border-r-2 border-[#2780DA]/10">
                     </div>
                     <div
                         class="absolute bottom-0 left-0 w-24 sm:w-32 h-24 sm:h-32 border-b-2 border-l-2 border-secondary-container/10">
@@ -1836,66 +1924,57 @@
 
                     <div class="relative z-10">
                         <div class="text-center space-y-4 mb-8 sm:mb-12">
-                            <h2 class="text-slate-900 font-headline font-bold text-3xl sm:text-4xl tracking-tighter">
-                                ĐĂNG KÝ NGAY</h2>
+                            <h2 class="section-title text-slate-900">
+                                ĐĂNG KÝ NGAY
+                            </h2>
                             <p class="text-slate-500 text-sm sm:text-base">Bắt đầu hành trình chinh phục Deep Tech cùng
                                 FPT Telecom</p>
                         </div>
 
                         <form class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Họ
+                                <label class="label-text text-[#2780DA]">Họ
                                     và tên *</label>
-                                <input
-                                    class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
-                                    placeholder="Nguyễn Văn A" type="text" />
+                                <input class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#2780DA]
+focus:border-[#2780DA] transition-all" placeholder="Nguyễn Văn A" type="text" />
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Trường
+                                <label class="label-text text-[#2780DA]">Trường
                                     đại học *</label>
-                                <input
-                                    class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
-                                    placeholder="ĐH Bách Khoa, FPT University..." type="text" />
+                                <input class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#2780DA]
+focus:border-[#2780DA] transition-all" placeholder="ĐH Bách Khoa, FPT University..." type="text" />
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Khu
+                                <label class="label-text text-[#2780DA]">Khu
                                     vực *</label>
-                                <select
-                                    class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all">
+                                <select class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#2780DA]
+focus:border-[#2780DA] transition-all">
                                     <option>Hà Nội</option>
                                     <option>TP. Hồ Chí Minh</option>
                                 </select>
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Email
+                                <label class="label-text text-[#2780DA]">Email
                                     *</label>
-                                <input
-                                    class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
-                                    placeholder="example@email.com" type="email" />
+                                <input class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#2780DA]
+focus:border-[#2780DA] transition-all" placeholder="example@email.com" type="email" />
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Chuyên
+                                <label class="label-text text-[#2780DA]">Chuyên
                                     ngành *</label>
-                                <input
-                                    class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
-                                    placeholder="An toàn thông tin, Điện tử viễn thông..." type="text" />
+                                <input class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#2780DA]
+focus:border-[#2780DA] transition-all" placeholder="An toàn thông tin, Điện tử viễn thông..." type="text" />
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Vị
+                                <label class="label-text text-[#2780DA]">Vị
                                     trí mong muốn *</label>
-                                <select
-                                    class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all">
+                                <select class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#2780DA]
+focus:border-[#2780DA] transition-all">
                                     <option>Viễn thông</option>
                                     <option>CNTT / Software</option>
                                     <option>Dữ liệu &amp; AI</option>
@@ -1906,31 +1985,28 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Số
+                                <label class="label-text text-[#2780DA]">Số
                                     điện thoại *</label>
                                 <input
-                                    class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
+                                    class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#2780DA] focus:border-[#2780DA] transition-all"
                                     placeholder="09xx xxx xxx" type="tel" />
                             </div>
 
                             <div class="space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Điểm
+                                <label class="label-text text-[#2780DA]">Điểm
                                     GPA *</label>
                                 <input
-                                    class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#00D1E0] focus:border-[#00D1E0] transition-all"
+                                    class="w-full bg-slate-50 border-slate-200 text-slate-900 p-4 focus:ring-1 focus:ring-[#2780DA] focus:border-[#2780DA] transition-all"
                                     placeholder="7.0/10 hoặc 3.0/4" type="text" />
                             </div>
 
                             <div class="md:col-span-2 space-y-2">
-                                <label
-                                    class="text-xs font-headline font-bold uppercase tracking-widest text-[#00D1E0]">Upload
+                                <label class="label-text text-[#2780DA]">Upload
                                     CV (PDF) *</label>
                                 <div
-                                    class="w-full bg-slate-50 border border-dashed border-slate-300 text-slate-500 p-6 sm:p-8 text-center cursor-pointer hover:border-[#00D1E0] transition-all group rounded-2xl">
+                                    class="w-full bg-slate-50 border border-dashed border-slate-300 text-slate-500 p-6 sm:p-8 text-center cursor-pointer hover:border-[#2780DA] transition-all group rounded-2xl">
                                     <span
-                                        class="material-symbols-outlined text-4xl mb-2 group-hover:text-[#00D1E0] transition-colors">cloud_upload</span>
+                                        class="material-symbols-outlined text-4xl mb-2 group-hover:text-[#2780DA] transition-colors">cloud_upload</span>
                                     <p class="text-sm sm:text-base">Kéo thả hoặc click để tải lên hồ sơ của bạn</p>
                                 </div>
                             </div>
@@ -1974,7 +2050,7 @@
                                     class="text-slate-900 font-headline font-bold text-2xl sm:text-3xl tracking-tighter">
                                 </h3>
                                 <p id="expertModalTitle"
-                                    class="text-[#00D1E0] font-bold uppercase tracking-widest text-xs sm:text-sm mt-3">
+                                    class="text-[#2780DA] font-bold uppercase tracking-widest text-xs sm:text-sm mt-3">
                                 </p>
                             </div>
 
@@ -1993,7 +2069,7 @@
             class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 sm:px-8 lg:px-12 py-12 sm:py-16 w-full max-w-screen-2xl mx-auto">
             <div class="space-y-6">
                 <img src="logo.png" alt="logoFPT" class="w-auto h-10">
-                <p class="text-slate-400 font-['Inter'] text-sm tracking-wide max-w-xs leading-relaxed">
+                <p class="text-slate-400 font-body text-sm tracking-wide max-w-xs leading-relaxed">
                     Đơn vị cung cấp dịch vụ Viễn thông và Internet hàng đầu Việt Nam. Đi đầu trong công nghệ Cloud, AI
                     và Hạ tầng thông minh
                 </p>
@@ -2002,23 +2078,23 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-4">
                 <div class="space-y-4">
                     <h5 class="text-white font-bold text-xs uppercase tracking-widest">Liên kết</h5>
-                    <ul class="space-y-2 font-['Inter'] text-xs tracking-wide">
-                        <li><a class="text-slate-400 hover:text-[#00D1E0] underline transition-all"
+                    <ul class="space-y-2 font-body text-xs tracking-wide">
+                        <li><a class="text-slate-400 hover:text-[#2780DA] underline transition-all"
                                 href="https://www.facebook.com/fptjobs/?locale=vi_VN">Facebook</a></li>
-                        <li><a class="text-slate-400 hover:text-[#00D1E0] underline transition-all"
+                        <li><a class="text-slate-400 hover:text-[#2780DA] underline transition-all"
                                 href="https://www.linkedin.com/company/fpt-telecom/posts/?feedView=all">LinkedIn</a>
                         </li>
-                        <li><a class="text-slate-400 hover:text-[#00D1E0] underline transition-all"
+                        <li><a class="text-slate-400 hover:text-[#2780DA] underline transition-all"
                                 href="https://www.tiktok.com/@tuyendungfpttelecom">TikTok</a></li>
                     </ul>
                 </div>
 
                 <div class="space-y-4">
                     <h5 class="text-white font-bold text-xs uppercase tracking-widest">Tuyển dụng</h5>
-                    <ul class="space-y-2 font-['Inter'] text-xs tracking-wide">
-                        <li><a class="text-slate-400 hover:text-[#00D1E0] underline transition-all"
+                    <ul class="space-y-2 font-body text-xs tracking-wide">
+                        <li><a class="text-slate-400 hover:text-[#2780DA] underline transition-all"
                                 href="https://fptjobs.com/">fptjobs.com</a></li>
-                        <li><a class="text-slate-400 hover:text-[#00D1E0] underline transition-all text-[10px] break-all"
+                        <li><a class="text-slate-400 hover:text-[#2780DA] underline transition-all text-[10px] break-all"
                                 href="mailto:FTELHR.Tuyendung@fpt.com">FTELHR.Tuyendung@fpt.com</a></li>
                     </ul>
                 </div>
@@ -2026,7 +2102,7 @@
         </div>
 
         <div
-            class="border-t border-slate-800/50 py-6 text-center text-slate-500 font-['Inter'] text-[10px] tracking-widest uppercase">
+            class="border-t border-slate-800/50 py-6 text-center text-slate-500 font-body text-[10px] tracking-widest uppercase">
             © 2026 FPT TELECOM DEEP TECH RECRUITMENT
         </div>
     </footer>
@@ -2114,8 +2190,9 @@
             if (!target) return;
 
             const navHeight = getNavHeight();
-            const extraGap = window.innerWidth <= 767 ? 8 : 14;
-            const targetTop = target.getBoundingClientRect().top + window.pageYOffset - navHeight - extraGap;
+            const sectionScrollMargin = parseInt(window.getComputedStyle(target).scrollMarginTop || "0", 10);
+            const offset = sectionScrollMargin || navHeight;
+            const targetTop = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
             window.scrollTo({
                 top: Math.max(targetTop, 0),
@@ -2126,19 +2203,24 @@
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
-                const target = document.querySelector(targetId);
+                if (!targetId || targetId === '#') return;
 
+                const target = document.querySelector(targetId);
                 if (!target) return;
 
                 e.preventDefault();
 
+                const runScroll = () => {
+                    requestAnimationFrame(() => {
+                        scrollToSection(targetId);
+                    });
+                };
+
                 if (mobileMenuPanel.classList.contains('open')) {
                     closeMobileMenu();
-                    setTimeout(() => {
-                        scrollToSection(targetId);
-                    }, 220);
+                    setTimeout(runScroll, 260);
                 } else {
-                    scrollToSection(targetId);
+                    runScroll();
                 }
             });
         });
@@ -2164,13 +2246,14 @@
 
         function setActiveNav() {
             const navHeight = getNavHeight();
+            const triggerLine = window.scrollY + navHeight + 24;
             let currentSectionId = '';
 
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - navHeight - 120;
-                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
 
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                if (triggerLine >= sectionTop && triggerLine < sectionBottom) {
                     currentSectionId = section.getAttribute('id');
                 }
             });
